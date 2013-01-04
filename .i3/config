@@ -1,0 +1,165 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!#
+# This config file uses keycodes (bindsym) and was written for the QWERTY
+# layout.
+#
+# To get a config file with the same key positions, but for your current
+# layout, use the i3-config-wizard
+#
+
+set $mod Mod4
+
+# font for window titles. ISO 10646 = Unicode
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font xft:Terminus 8
+
+# use Mouse+Mod1 to drag floating windows to their wanted position
+
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec urxvtc
+
+# kill focused window
+bindsym $mod+Shift+Q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+r exec dmenu_run
+
+# change focus
+bindsym $mod+a focus left
+bindsym $mod+s focus down
+bindsym $mod+w focus up
+bindsym $mod+d focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+A move left
+bindsym $mod+Shift+S move down
+bindsym $mod+Shift+W move up
+bindsym $mod+Shift+D move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move pgdn
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, default)
+bindsym $mod+e layout tabbed
+bindsym $mod+q layout default
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+x focus parent
+
+# focus the child container
+#bindcode $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3: VLC
+bindsym $mod+4 workspace 4: Skype
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9: Backup
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+exclam move container to workspace 1
+bindsym $mod+Shift+at move container to workspace 2
+bindsym $mod+Shift+numbersign move container to workspace 3
+bindsym $mod+Shift+dollar move container to workspace 4
+bindsym $mod+Shift+percent move container to workspace 5
+bindsym $mod+Shift+asciicircum move container to workspace 6
+bindsym $mod+Shift+ampersand move container to workspace 7
+bindsym $mod+Shift+asterisk move container to workspace 8
+bindsym $mod+Shift+parenleft move container to workspace 9
+bindsym $mod+Shift+parenright move container to workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+C reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+R restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+E exit
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+		status_command conky
+		position bottom
+
+	  colors {
+					background #121212
+					statusline #CAD7d9
+				}
+}
+
+new_window 1pixel
+
+# class                 border  backgr. text    indicator
+client.focused          #0088cc #003d5c #DDDDDD #EDEFF2
+client.focused_inactive #006699 #222222 #cad7d9 #484e50
+client.unfocused        #333333 #222222 #666666 #292d2e
+client.urgent           #ff0000 #900000 #ffffff #900000
+
+
+#client.focused          #B58900 #B58900 #FDF6E3 #2AA198
+#client.focused_inactive #268BD2 #268BD2 #EEE8D5 #484e30
+#client.unfocused        #002B36 #002B36 #93A1A1 #002B36
+#client.urgent           #CB4B16 #CB4B16 #FDF6E3 #DC322F
+
+bindsym mod4+l exec --no-startup-id slimlock
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 10%+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 10%- unmute
+bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioPlay exec clementine --play-pause
+
+exec --no-startup-id xset b off
+
+# Make the currently focused window a scratchpad
+bindsym mod4+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym mod4+minus scratchpad show
+
+#assign programs to specific workspaces
+assign [class="Pidgin"] 2
+assign [class="Clementine"] 2
+assign [class="Vlc"] 3: VLC
+assign [class="Skype"] 4: Skype
+assign [class="CrashPlan"] 9: Backup
+
+
+for_window[class="lxappearance"] floating enable
+for_window[class="Thunar"] floating enable
+for_window[class="Vlc"] floating enable
+for_window[class="Skype"] floating enable
+for_window[class="sftpman-gtk"] floating enable
+for_window[title="Firefox Preferences"] floating enable
+for_window[title="Tab Mix Plus Options"] floating enable
+for_window[title="Compose element hiding rule"] floating enable
