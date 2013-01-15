@@ -10,7 +10,6 @@ fi
 alias vi='vim'
 alias pacman='pacman-color'
 alias p='sudo packer'
-alias grep='grep -n --color-auto'
 alias ll='ls -l --group-directories-first'
 alias ls='ls -hF --color'
 alias la='ls -Al'
@@ -19,6 +18,7 @@ alias suspend='sudo pm-suspend'
 alias unmount='udiskie-umount -a'
 alias midgard='ssh 10.10.1.7'
 alias valgrind='valgrind --leak-check=yes'
+
 
 # bash_history settings
 shopt -s histappend
@@ -33,6 +33,7 @@ set echo-control-characters off
 export TERM=rxvt-unicode-256color
 export LD_LIBRARY_PATH=/opt/AftershotPro/lib:$LD_LIBRARY_PATH
 export PATH=/home/viraj/bin:$PATH
+export VIMCLOJURE_SERVER_JAR="$HOME/.vim/bundle/VimClojure/server-2.3.6.jar"
 
 # autocompletes
 complete -cf sudo

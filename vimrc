@@ -1,23 +1,53 @@
-filetype off
-
 set nocompatible "be iMproved
+filetype off " On some Linux systems, this is necessary to make sure vundle
+             " picks up ftdetect directories in plugins! :(
 set modelines=0 "security hole involving modelines
 
-call vundle#rc()
-" My bundles here:
-" original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-surround'
-Bundle 'scrooloose/syntastic'
-Bundle 'mikewest/vimroom'
+" should automatically set up vundle and install all bundles is vundle is not installed
+" Setting up Vundle - the vim plugin bundler
+" Run :BundleInstall to install bundles after vundle is installed
+  let iCanHazVundle=1
+  let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+  if !filereadable(vundle_readme)
+      echo "Installing Vundle.."
+      echo ""
+      silent !mkdir -p ~/.vim/bundle
+      silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+      let iCanHazVundle=0
+  endif
+  set rtp+=~/.vim/bundle/vundle/
+  call vundle#rc()
+  " My bundles here:
+  " original repos on github
+  Bundle 'tpope/vim-fugitive'
+  Bundle 'scrooloose/nerdtree'
+  Bundle 'tpope/vim-surround'
+  Bundle 'scrooloose/syntastic'
+  Bundle 'mikewest/vimroom'
+  Bundle 'vim-scripts/VimClojure'
+  Bundle 'vim-scripts/screen.vim'
+  Bundle 'vim-scripts/SearchComplete'
+  Bundle 'ervandew/supertab'
+  Bundle 'altercation/vim-colors-solarized'
+  Bundle 'Lokaltog/vim-powerline'
+  Bundle 'myusuf3/numbers.vim'
 
+"Bundle Configs
 let NERDTreeWinSize = 12
 
+let vimclojureRoot = "~/.vim/bundle/VimClojure"
+let vimclojure#HighlightBuiltins=1
+let vimclojure#HighlightContrib=1
+let vimclojure#DynamicHighlighting=1
+let vimclojure#ParenRainbow=1
+let vimclojure#WantNailgun = 1
+let vimclojure#NailgunClient = "/usr/bin/ng"
+
 set t_Co=256
-filetype plugin indent on "required!
+filetype plugin indent on "required for vundle
 syntax enable
 set background=dark
+colorscheme solarized
 
 nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
@@ -66,18 +96,23 @@ set wrap
 set noerrorbells visualbell t_vb = 
 autocmd GUIEnter * set visualbell t_vb=
 
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+"nnoremap <up> <nop>
+"nnoremap <down> <nop>
+"nnoremap <left> <nop>
+"nnoremap <right> <nop>
+"inoremap <up> <nop>
+"inoremap <down> <nop>
+"inoremap <left> <nop>
+"inoremap <right> <nop>
+inoremap <up> <ESC><up>
+inoremap <down> <ESC><down>
+inoremap <left> <ESC>
+inoremap <right> <ESC><right><right>
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
+
 
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
@@ -122,27 +157,3 @@ endif
 exe "bd".todelbufNr
 endfunction
 """""
-
-"smart tab completion
-function! Smart_TabComplete()
-  let line = getline('.')                         " current line
-
-  let substr = strpart(line, -1, col('.')+1)      " from the start of the current
-                                                  " line to one character right
-                                                  " of the cursor
-  let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
-  if (strlen(substr)==0)                          " nothing to match on empty string
-    return "\<tab>"
-  endif
-  let has_period = match(substr, '\.') != -1      " position of period, if any
-  let has_slash = match(substr, '\/') != -1       " position of slash, if any
-  if (!has_period && !has_slash)
-    return "\<C-X>\<C-P>"                         " existing text matching
-  elseif ( has_slash )
-    return "\<C-X>\<C-F>"                         " file matching
-  else
-    return "\<C-X>\<C-O>"                         " plugin matching
-  endif
-endfunction
-
-inoremap <tab> <c-r>=Smart_TabComplete()<CR>
