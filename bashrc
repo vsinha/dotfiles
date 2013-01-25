@@ -19,6 +19,7 @@ alias unmount='udiskie-umount -a'
 alias midgard='ssh 10.10.1.7'
 alias valgrind='valgrind --leak-check=yes'
 
+alias off='sleep 1; xset dpms force off'
 
 # bash_history settings
 shopt -s histappend
@@ -34,6 +35,8 @@ export TERM=rxvt-unicode-256color
 export LD_LIBRARY_PATH=/opt/AftershotPro/lib:$LD_LIBRARY_PATH
 export PATH=/home/viraj/bin:$PATH
 export VIMCLOJURE_SERVER_JAR="$HOME/.vim/bundle/VimClojure/server-2.3.6.jar"
+export CLOJURESCRIPT_HOME="$HOME/clojurescript"
+export CLASSPATH="$CLASSPATH:$HOME/.lein/self-installs/leiningen-2.0.0-preview10-standalone.jar"
 
 # autocompletes
 complete -cf sudo

@@ -40,8 +40,8 @@ let vimclojure#HighlightBuiltins=1
 let vimclojure#HighlightContrib=1
 let vimclojure#DynamicHighlighting=1
 let vimclojure#ParenRainbow=1
-let vimclojure#WantNailgun = 1
-let vimclojure#NailgunClient = "/usr/bin/ng"
+"let vimclojure#WantNailgun = 1
+"let vimclojure#NailgunClient = "/usr/bin/ng"
 
 set t_Co=256
 filetype plugin indent on "required for vundle
@@ -55,8 +55,8 @@ nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
 "disable auto-commenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 set mouse=a
 "set expandtab
 
