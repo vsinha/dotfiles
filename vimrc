@@ -29,8 +29,16 @@ set modelines=0 "security hole involving modelines
   Bundle 'vim-scripts/SearchComplete'
   Bundle 'ervandew/supertab'
   Bundle 'altercation/vim-colors-solarized'
-  Bundle 'Lokaltog/vim-powerline'
+  Bundle 'Lokaltog/vim-powerline' 
   Bundle 'myusuf3/numbers.vim'
+  Bundle 'matze/dwm.vim'
+
+  "python
+  Bundle 'python.vim'
+  Bundle 'kevinw/pyflakes-vim'
+  Bundle 'python_match.vim'
+  Bundle 'pythoncomplete'
+
 
 "Bundle Configs
 let NERDTreeWinSize = 12
@@ -46,18 +54,25 @@ let vimclojure#ParenRainbow=1
 set t_Co=256
 filetype plugin indent on "required for vundle
 syntax enable
-set background=dark
-colorscheme solarized
 
-nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+
+if !has('gui_running')
+	let g:solarized_termtrans=1
+endif
+
+colorscheme solarized
+set background=dark
+
+"nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
+"nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
 
 "disable auto-commenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 set shiftwidth=4
-set softtabstop=4
+set tabstop=4
 set mouse=a
+set noexpandtab
 "set expandtab
 
 set encoding=utf-8
@@ -131,29 +146,3 @@ nnoremap <F8> :setl noai nocin nosi inde=<CR>
 
 set showmatch
 hi MatchParen cterm=NONE ctermbg=cyan ctermfg=black
-
-"""""
-"maps 'fc' and 'fq' in normal mode to optionally save 
-"the current buffer then switch to a new buffer before deleting the original. 
-"This preserves any splits you have set up.
-map fc <Esc>:call CleanClose(1) <CR>
-map fq <Esc>:call CleanClose(0) <CR>
-
-function! CleanClose(tosave)
-if (a:tosave == 1)
-    w!
-endif
-let todelbufNr = bufnr("%")
-let newbufNr = bufnr("#")
-if ((newbufNr != -1) && (newbufNr != todelbufNr) && buflisted(newbufNr))
-    exe "b".newbufNr
-else
-    bnext
-endif
-
-if (bufnr("%") == todelbufNr)
-    new
-endif
-exe "bd".todelbufNr
-endfunction
-"""""

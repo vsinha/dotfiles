@@ -33,10 +33,11 @@ set echo-control-characters off
 # export some system variables
 export TERM=rxvt-unicode-256color
 export LD_LIBRARY_PATH=/opt/AftershotPro/lib:$LD_LIBRARY_PATH
-export PATH=/home/viraj/bin:$PATH
+export PATH=$HOME/bin:$HOME/.gem/ruby/1.9.1/bin:$PATH
 export VIMCLOJURE_SERVER_JAR="$HOME/.vim/bundle/VimClojure/server-2.3.6.jar"
 export CLOJURESCRIPT_HOME="$HOME/clojurescript"
 export CLASSPATH="$CLASSPATH:$HOME/.lein/self-installs/leiningen-2.0.0-preview10-standalone.jar"
+export EDITOR="/usr/bin/vim"
 
 # autocompletes
 complete -cf sudo
