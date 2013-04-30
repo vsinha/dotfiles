@@ -7,19 +7,21 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific aliases and functions
-alias vi='vim'
-alias pacman='pacman-color'
-alias p='sudo packer'
+#alias vi='vim' # need to get out of this habit
+alias pacman='sudo pacman'
+#alias please= "sudo "
 alias ll='ls -l --group-directories-first'
 alias ls='ls -hF --color'
 alias la='ls -Al'
 alias lock='slimlock'
-alias suspend='sudo pm-suspend'
 alias unmount='udiskie-umount -a'
 alias midgard='ssh 10.10.1.7'
 alias valgrind='valgrind --leak-check=yes'
+alias extract='dtrx'
 
-alias off='sleep 1; xset dpms force off'
+alias winesteam='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-dwrite >/dev/null 2>&1 &'
+
+alias sleep='systemctl suspend'
 
 # bash_history settings
 shopt -s histappend
@@ -31,11 +33,8 @@ export HISTCONTROL=ignoreboth
 set echo-control-characters off
 
 # export some system variables
-export TERM=rxvt-unicode-256color
 export LD_LIBRARY_PATH=/opt/AftershotPro/lib:$LD_LIBRARY_PATH
-export PATH=$HOME/bin:$HOME/.gem/ruby/1.9.1/bin:$PATH
-export VIMCLOJURE_SERVER_JAR="$HOME/.vim/bundle/VimClojure/server-2.3.6.jar"
-export CLOJURESCRIPT_HOME="$HOME/clojurescript"
+export PATH=$HOME/bin:$HOME/.gem/ruby/1.9.1/bin:/opt/android-sdk/platform-tools:/opt/android-sdk/tools:$PATH
 export CLASSPATH="$CLASSPATH:$HOME/.lein/self-installs/leiningen-2.0.0-preview10-standalone.jar"
 export EDITOR="/usr/bin/vim"
 
@@ -46,6 +45,8 @@ complete -cf man
 # bash history completion, bound to down and up arrows
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
+set show-all-if-ambiguous on
+set completion-ignore-case on
 
 # colored manpages
 man() {

@@ -32,12 +32,16 @@ set modelines=0 "security hole involving modelines
   Bundle 'Lokaltog/vim-powerline' 
   Bundle 'myusuf3/numbers.vim'
   Bundle 'matze/dwm.vim'
+  "Bundle 'wikitopian/hardmode' "no movement keys work
 
   "python
   Bundle 'python.vim'
   Bundle 'kevinw/pyflakes-vim'
   Bundle 'python_match.vim'
   Bundle 'pythoncomplete'
+
+  "scala
+  Bundle 'derekwyatt/vim-scala'
 
 
 "Bundle Configs
@@ -81,14 +85,17 @@ set autoindent
 set showmode
 set showcmd
 set hidden
+
 set wildmenu
+set wildmode=list:longest,full
+set wildignore=*.o,*~,*.pyc,*.pyo,*.so,*.sw*,__pycache__
+
 set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
 set nu
 set undofile
-"set wildmenu=list:longest
 "set cursorline
 "set relativenumber
 
@@ -141,8 +148,26 @@ au FocusLost * :wa "save on lose focus
 set wildignore+=*.lib,*.dll,*.exe,*.o,*.obj,*.pyc,*.pyo,*.png,*.gif,*.jpg,*.jpeg,*.bmp,*.tiff " ignore filetypes for auto complete
 "set smartindent "Copy indent from current line when starting a new line.
 
-"F8 to disable all autoindents (for pasting)
-nnoremap <F8> :setl noai nocin nosi inde=<CR> 
-
 set showmatch
 hi MatchParen cterm=NONE ctermbg=cyan ctermfg=black
+
+" Enhanced keyboard mappings
+"
+" in normal mode F2 will save the file
+nmap <F2> :w<CR>
+" in insert mode F2 will exit insert, save, enters insert again
+imap <F2> <ESC>:w<CR>i
+" switch between header/source with F4
+map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+" recreate tags file with F5
+map <F5> :!ctags -R –c++-kinds=+p –fields=+iaS –extra=+q .<CR>
+" create doxygen comment
+map <F6> :Dox<CR>
+" build using makeprg with <F7>
+map <F7> :make<CR>
+" build using makeprg with <S-F7>
+map <S-F7> :make clean all<CR>
+"F8 to disable all autoindents (for pasting)
+nnoremap <F8> :setl noai nocin nosi inde=<CR> 
+" goto definition with F12
+map <F12> <C-]>
