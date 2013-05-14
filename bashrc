@@ -1,6 +1,6 @@
 # .bashrc
 if [ -n "$SSH_CLIENT" ]; then
-	PS1='\[\e[0;33m\]\u@\h\[\e[m\] \[\e[0;34m\]\w\[\e[m\] \[\e[0;33m\]\$\[\e[m\] '
+	PS1='\[\e[0;32m\]\u@\[\e[m\]\[\e[0;33m\]\h\[\e[m\] \[\e[0;34m\]\w\[\e[m\] \[\e[0;32m\]\$\[\e[m\] '
 else
 	PS1='\[\e[0;32m\]\u@\h\[\e[m\] \[\e[0;34m\]\w\[\e[m\] \[\e[0;32m\]\$\[\e[m\] '
 fi
@@ -14,14 +14,17 @@ fi
 # User specific aliases and functions
 #alias vi='vim' # need to get out of this habit
 alias pacman='sudo pacman'
-alias please= "sudo "
-alias vi= "echo I think you mean vim"
+alias please='sudo '
+alias vi='echo "I think you mean vim"'
 alias ll='ls -l --group-directories-first'
 alias ls='ls -hF --color'
 alias la='ls -Al'
 alias lock='slimlock'
 alias unmount='udiskie-umount -a'
+
+alias asgard ='ssh virajs.in'
 alias midgard='ssh 10.10.1.7'
+
 alias valgrind='valgrind --leak-check=yes'
 alias extract='dtrx'
 
