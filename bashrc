@@ -1,5 +1,10 @@
 # .bashrc
-PS1='\[\e[0;32m\]\u@\h\[\e[m\] \[\e[0;34m\]\w\[\e[m\] \[\e[0;32m\]\$\[\e[m\] '
+if [ -n "$SSH_CLIENT" ]; then
+	PS1='\[\e[0;33m\]\u@\h\[\e[m\] \[\e[0;34m\]\w\[\e[m\] \[\e[0;33m\]\$\[\e[m\] '
+else
+	PS1='\[\e[0;32m\]\u@\h\[\e[m\] \[\e[0;34m\]\w\[\e[m\] \[\e[0;32m\]\$\[\e[m\] '
+fi
+
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -9,7 +14,8 @@ fi
 # User specific aliases and functions
 #alias vi='vim' # need to get out of this habit
 alias pacman='sudo pacman'
-#alias please= "sudo "
+alias please= "sudo "
+alias vi= "echo I think you mean vim"
 alias ll='ls -l --group-directories-first'
 alias ls='ls -hF --color'
 alias la='ls -Al'
