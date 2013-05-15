@@ -22,7 +22,7 @@ alias la='ls -Al'
 alias lock='slimlock'
 alias unmount='udiskie-umount -a'
 
-alias asgard ='ssh virajs.in'
+alias asgard='ssh virajs.in'
 alias midgard='ssh 10.10.1.7'
 
 alias valgrind='valgrind --leak-check=yes'
@@ -31,6 +31,8 @@ alias extract='dtrx'
 alias winesteam='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-dwrite >/dev/null 2>&1 &'
 
 alias sleep='systemctl suspend'
+
+alias runcube='( python cubebot.py &> log.txt ) &'
 
 # bash_history settings
 shopt -s histappend
