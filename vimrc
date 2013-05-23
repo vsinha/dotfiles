@@ -149,7 +149,7 @@ set wildignore+=*.lib,*.dll,*.exe,*.o,*.obj,*.pyc,*.pyo,*.png,*.gif,*.jpg,*.jpeg
 "set smartindent "Copy indent from current line when starting a new line.
 
 set showmatch
-hi MatchParen cterm=NONE ctermbg=cyan ctermfg=black
+highlight MatchParen cterm=bold ctermfg=Grey ctermbg=DarkGrey
 
 " Enhanced keyboard mappings
 "
