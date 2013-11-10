@@ -33,6 +33,7 @@ set modelines=0 "security hole involving modelines
   Bundle 'myusuf3/numbers.vim'
   Bundle 'matze/dwm.vim'
   "Bundle 'wikitopian/hardmode' "no movement keys work
+  Bundle 'osyo-manga/vim-over'
 
   "python
   Bundle 'python.vim'
