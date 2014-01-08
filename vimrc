@@ -136,6 +136,12 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
+"remap H to go to beginning of line - enhanced h behavior
+nnoremap H 0
+ 
+"remap L to go to end of line - enhanced l behavior
+nnoremap L $
+
 
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
@@ -143,6 +149,8 @@ vnoremap <F1> <ESC>
 
 nnoremap ; :
 inoremap jj <ESC>
+inoremap jk <ESC>
+inoremap kj <ESC>
 inoremap kk <ESC>
 
 au FocusLost * :wa "save on lose focus
