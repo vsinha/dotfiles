@@ -17,14 +17,11 @@ set modelines=0 "security hole involving modelines
   endif
   set rtp+=~/.vim/bundle/vundle/
   call vundle#rc()
-  " My bundles here:
-  " original repos on github
+
   Bundle 'tpope/vim-fugitive'
-  Bundle 'scrooloose/nerdtree'
   Bundle 'tpope/vim-surround'
   Bundle 'scrooloose/syntastic'
   Bundle 'mikewest/vimroom'
-  Bundle 'vim-scripts/VimClojure'
   Bundle 'vim-scripts/screen.vim'
   Bundle 'vim-scripts/SearchComplete'
   Bundle 'ervandew/supertab'
@@ -32,34 +29,23 @@ set modelines=0 "security hole involving modelines
   Bundle 'Lokaltog/vim-powerline' 
   Bundle 'myusuf3/numbers.vim'
   Bundle 'matze/dwm.vim'
-  "Bundle 'wikitopian/hardmode' "no movement keys work
   Bundle 'osyo-manga/vim-over'
-
+  "Bundle 'scrooloose/nerdtree'
+  "Bundle 'wikitopian/hardmode' "no movement keys work
+  "Bundle 'vim-scripts/VimClojure'
+  
   "python
   Bundle 'python.vim'
   Bundle 'kevinw/pyflakes-vim'
   Bundle 'python_match.vim'
   Bundle 'pythoncomplete'
 
-  "scala
-  Bundle 'derekwyatt/vim-scala'
-
-
 "Bundle Configs
-let NERDTreeWinSize = 12
-
-let vimclojureRoot = "~/.vim/bundle/VimClojure"
-let vimclojure#HighlightBuiltins=1
-let vimclojure#HighlightContrib=1
-let vimclojure#DynamicHighlighting=1
-let vimclojure#ParenRainbow=1
-"let vimclojure#WantNailgun = 1
-"let vimclojure#NailgunClient = "/usr/bin/ng"
+"let NERDTreeWinSize = 12
 
 set t_Co=256
 filetype plugin indent on "required for vundle
 syntax enable
-
 
 if !has('gui_running')
 	let g:solarized_termtrans=1
@@ -78,7 +64,6 @@ set shiftwidth=4
 set tabstop=4
 set mouse=a
 set noexpandtab
-"set expandtab
 
 set encoding=utf-8
 set scrolloff=5
@@ -119,14 +104,6 @@ set wrap
 set noerrorbells visualbell t_vb = 
 autocmd GUIEnter * set visualbell t_vb=
 
-"nnoremap <up> <nop>
-"nnoremap <down> <nop>
-"nnoremap <left> <nop>
-"nnoremap <right> <nop>
-"inoremap <up> <nop>
-"inoremap <down> <nop>
-"inoremap <left> <nop>
-"inoremap <right> <nop>
 inoremap <up> <ESC><up>
 inoremap <down> <ESC><down>
 inoremap <left> <ESC>
@@ -141,7 +118,6 @@ nnoremap H 0
  
 "remap L to go to end of line - enhanced l behavior
 nnoremap L $
-
 
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
