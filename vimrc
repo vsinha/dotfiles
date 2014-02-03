@@ -3,68 +3,10 @@ filetype off " On some Linux systems, this is necessary to make sure vundle
              " picks up ftdetect directories in plugins! :(
 set modelines=0 "security hole involving modelines
 
-" should automatically set up vundle and install all bundles is vundle is not installed
-" Setting up Vundle - the vim plugin bundler
-" Run :BundleInstall to install bundles after vundle is installed
-  let iCanHazVundle=1
-  let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-  if !filereadable(vundle_readme)
-      echo "Installing Vundle.."
-      echo ""
-      silent !mkdir -p ~/.vim/bundle
-      silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-      let iCanHazVundle=0
-  endif
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
-  " My bundles here:
-  " original repos on github
-  Bundle 'tpope/vim-fugitive'
-  Bundle 'scrooloose/nerdtree'
-  Bundle 'tpope/vim-surround'
-  Bundle 'scrooloose/syntastic'
-  Bundle 'mikewest/vimroom'
-  Bundle 'vim-scripts/VimClojure'
-  Bundle 'vim-scripts/screen.vim'
-  Bundle 'vim-scripts/SearchComplete'
-  Bundle 'ervandew/supertab'
-  Bundle 'altercation/vim-colors-solarized'
-  Bundle 'Lokaltog/vim-powerline' 
-  Bundle 'myusuf3/numbers.vim'
-  Bundle 'matze/dwm.vim'
-  "Bundle 'wikitopian/hardmode' "no movement keys work
-
-  "python
-  Bundle 'python.vim'
-  Bundle 'kevinw/pyflakes-vim'
-  Bundle 'python_match.vim'
-  Bundle 'pythoncomplete'
-
-  "scala
-  Bundle 'derekwyatt/vim-scala'
-
-
-"Bundle Configs
-let NERDTreeWinSize = 12
-
-let vimclojureRoot = "~/.vim/bundle/VimClojure"
-let vimclojure#HighlightBuiltins=1
-let vimclojure#HighlightContrib=1
-let vimclojure#DynamicHighlighting=1
-let vimclojure#ParenRainbow=1
-"let vimclojure#WantNailgun = 1
-"let vimclojure#NailgunClient = "/usr/bin/ng"
-
-set t_Co=256
+"set t_Co=256
 filetype plugin indent on "required for vundle
 syntax enable
 
-
-if !has('gui_running')
-	let g:solarized_termtrans=1
-endif
-
-colorscheme solarized
 set background=dark
 
 "nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
@@ -76,8 +18,8 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set shiftwidth=4
 set tabstop=4
 set mouse=a
-set noexpandtab
-"set expandtab
+"set noexpandtab
+set expandtab
 
 set encoding=utf-8
 set scrolloff=5
