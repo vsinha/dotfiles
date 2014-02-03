@@ -3,10 +3,62 @@ filetype off " On some Linux systems, this is necessary to make sure vundle
              " picks up ftdetect directories in plugins! :(
 set modelines=0 "security hole involving modelines
 
+<<<<<<< HEAD
 "set t_Co=256
 filetype plugin indent on "required for vundle
 syntax enable
 
+=======
+" should automatically set up vundle and install all bundles is vundle is not installed
+" Setting up Vundle - the vim plugin bundler
+" Run :BundleInstall to install bundles after vundle is installed
+  let iCanHazVundle=1
+  let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+  if !filereadable(vundle_readme)
+      echo "Installing Vundle.."
+      echo ""
+      silent !mkdir -p ~/.vim/bundle
+      silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+      let iCanHazVundle=0
+  endif
+  set rtp+=~/.vim/bundle/vundle/
+  call vundle#rc()
+
+  Bundle 'tpope/vim-fugitive'
+  Bundle 'tpope/vim-surround'
+  Bundle 'scrooloose/syntastic'
+  Bundle 'mikewest/vimroom'
+  Bundle 'vim-scripts/screen.vim'
+  Bundle 'vim-scripts/SearchComplete'
+  Bundle 'ervandew/supertab'
+  Bundle 'altercation/vim-colors-solarized'
+  Bundle 'Lokaltog/vim-powerline' 
+  Bundle 'myusuf3/numbers.vim'
+  Bundle 'matze/dwm.vim'
+  Bundle 'osyo-manga/vim-over'
+  "Bundle 'scrooloose/nerdtree'
+  "Bundle 'wikitopian/hardmode' "no movement keys work
+  "Bundle 'vim-scripts/VimClojure'
+  
+  "python
+  Bundle 'python.vim'
+  Bundle 'kevinw/pyflakes-vim'
+  Bundle 'python_match.vim'
+  Bundle 'pythoncomplete'
+
+"Bundle Configs
+"let NERDTreeWinSize = 12
+
+set t_Co=256
+filetype plugin indent on "required for vundle
+syntax enable
+
+if !has('gui_running')
+	let g:solarized_termtrans=1
+endif
+
+colorscheme solarized
+>>>>>>> e7629295f4ede0e086658b1a5ec3b9f1e6e18339
 set background=dark
 
 "nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
@@ -18,8 +70,12 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set shiftwidth=4
 set tabstop=4
 set mouse=a
+<<<<<<< HEAD
 "set noexpandtab
 set expandtab
+=======
+set noexpandtab
+>>>>>>> e7629295f4ede0e086658b1a5ec3b9f1e6e18339
 
 set encoding=utf-8
 set scrolloff=5
@@ -60,14 +116,6 @@ set wrap
 set noerrorbells visualbell t_vb = 
 autocmd GUIEnter * set visualbell t_vb=
 
-"nnoremap <up> <nop>
-"nnoremap <down> <nop>
-"nnoremap <left> <nop>
-"nnoremap <right> <nop>
-"inoremap <up> <nop>
-"inoremap <down> <nop>
-"inoremap <left> <nop>
-"inoremap <right> <nop>
 inoremap <up> <ESC><up>
 inoremap <down> <ESC><down>
 inoremap <left> <ESC>
@@ -77,6 +125,11 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
+"remap H to go to beginning of line - enhanced h behavior
+nnoremap H 0
+ 
+"remap L to go to end of line - enhanced l behavior
+nnoremap L $
 
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
@@ -84,6 +137,8 @@ vnoremap <F1> <ESC>
 
 nnoremap ; :
 inoremap jj <ESC>
+inoremap jk <ESC>
+inoremap kj <ESC>
 inoremap kk <ESC>
 
 au FocusLost * :wa "save on lose focus
