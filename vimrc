@@ -22,16 +22,17 @@ syntax enable
   set rtp+=~/.vim/bundle/vundle/
   call vundle#rc()
 
+  Bundle 'scrooloose/syntastic'
+  Bundle 'vim-scripts/SearchComplete'
+  Bundle 'altercation/vim-colors-solarized'
+  Bundle 'Lokaltog/vim-powerline'
+  Bundle 'myusuf3/numbers.vim'
+  
+  "Bundle 'ervandew/supertab'
   "Bundle 'tpope/vim-fugitive'
   "Bundle 'tpope/vim-surround'
-  Bundle 'scrooloose/syntastic'
   "Bundle 'mikewest/vimroom'
   "Bundle 'vim-scripts/screen.vim'
-  Bundle 'vim-scripts/SearchComplete'
-  "Bundle 'ervandew/supertab'
-  Bundle 'altercation/vim-colors-solarized'
-  Bundle 'Lokaltog/vim-powerline' 
-  Bundle 'myusuf3/numbers.vim'
   "Bundle 'matze/dwm.vim'
   "Bundle 'osyo-manga/vim-over'
   "Bundle 'scrooloose/nerdtree'
@@ -47,19 +48,16 @@ syntax enable
 "Bundle Configs
 "let NERDTreeWinSize = 12
 
+"syntastic left side bar color:
+hi SignColumn ctermbg=237
+
 set t_Co=256
 filetype plugin indent on "required for vundle
 syntax enable
 
-if !has('gui_running')
-	let g:solarized_termtrans=1
-endif
 
 "colorscheme solarized
 "set background=dark
-
-"nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
-"nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
 
 "disable auto-commenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -67,8 +65,8 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set shiftwidth=4
 set tabstop=4
 set mouse=a
-"set noexpandtab
-set expandtab
+set noexpandtab
+"set expandtab
 
 set encoding=utf-8
 set scrolloff=5
@@ -152,7 +150,7 @@ map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 " recreate tags file with F5
 map <F5> :!ctags -R –c++-kinds=+p –fields=+iaS –extra=+q .<CR>
 " create doxygen comment
-map <F6> :Dox<CR>
+"map <F6> :Dox<CR>
 " build using makeprg with <F7>
 map <F7> :make<CR>
 " build using makeprg with <S-F7>
