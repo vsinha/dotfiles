@@ -3,12 +3,10 @@ filetype off " On some Linux systems, this is necessary to make sure vundle
              " picks up ftdetect directories in plugins! :(
 set modelines=0 "security hole involving modelines
 
-<<<<<<< HEAD
 "set t_Co=256
 filetype plugin indent on "required for vundle
 syntax enable
 
-=======
 " should automatically set up vundle and install all bundles is vundle is not installed
 " Setting up Vundle - the vim plugin bundler
 " Run :BundleInstall to install bundles after vundle is installed
@@ -24,27 +22,27 @@ syntax enable
   set rtp+=~/.vim/bundle/vundle/
   call vundle#rc()
 
-  Bundle 'tpope/vim-fugitive'
-  Bundle 'tpope/vim-surround'
+  "Bundle 'tpope/vim-fugitive'
+  "Bundle 'tpope/vim-surround'
   Bundle 'scrooloose/syntastic'
-  Bundle 'mikewest/vimroom'
-  Bundle 'vim-scripts/screen.vim'
+  "Bundle 'mikewest/vimroom'
+  "Bundle 'vim-scripts/screen.vim'
   Bundle 'vim-scripts/SearchComplete'
-  Bundle 'ervandew/supertab'
+  "Bundle 'ervandew/supertab'
   Bundle 'altercation/vim-colors-solarized'
   Bundle 'Lokaltog/vim-powerline' 
   Bundle 'myusuf3/numbers.vim'
-  Bundle 'matze/dwm.vim'
-  Bundle 'osyo-manga/vim-over'
+  "Bundle 'matze/dwm.vim'
+  "Bundle 'osyo-manga/vim-over'
   "Bundle 'scrooloose/nerdtree'
   "Bundle 'wikitopian/hardmode' "no movement keys work
   "Bundle 'vim-scripts/VimClojure'
   
   "python
-  Bundle 'python.vim'
-  Bundle 'kevinw/pyflakes-vim'
-  Bundle 'python_match.vim'
-  Bundle 'pythoncomplete'
+  "Bundle 'python.vim'
+  "Bundle 'kevinw/pyflakes-vim'
+  "Bundle 'python_match.vim'
+  "Bundle 'pythoncomplete'
 
 "Bundle Configs
 "let NERDTreeWinSize = 12
@@ -57,9 +55,8 @@ if !has('gui_running')
 	let g:solarized_termtrans=1
 endif
 
-colorscheme solarized
->>>>>>> e7629295f4ede0e086658b1a5ec3b9f1e6e18339
-set background=dark
+"colorscheme solarized
+"set background=dark
 
 "nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
 "nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
@@ -70,12 +67,8 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set shiftwidth=4
 set tabstop=4
 set mouse=a
-<<<<<<< HEAD
 "set noexpandtab
 set expandtab
-=======
-set noexpandtab
->>>>>>> e7629295f4ede0e086658b1a5ec3b9f1e6e18339
 
 set encoding=utf-8
 set scrolloff=5
@@ -126,7 +119,7 @@ vnoremap j gj
 vnoremap k gk
 
 "remap H to go to beginning of line - enhanced h behavior
-nnoremap H 0
+nnoremap H ^
  
 "remap L to go to end of line - enhanced l behavior
 nnoremap L $
