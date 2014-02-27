@@ -3,7 +3,7 @@ filetype off " necessary to make sure vundle does something
 set modelines=0 "security hole involving modelines
 
 filetype plugin indent on "required for vundle
-"syntax enable
+syntax enable
 
 " should automatically set up vundle and install all bundles is vundle is not installed
 " Setting up Vundle - the vim plugin bundler
@@ -20,23 +20,28 @@ filetype plugin indent on "required for vundle
   set rtp+=~/.vim/bundle/vundle/
   call vundle#rc()
 
+Bundle 'gmarik/vundle'
 Bundle 'scrooloose/syntastic'
 Bundle 'vim-scripts/SearchComplete'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'bling/vim-airline'
-Bundle 'Yggdroot/indentLine'          
+Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/ctrlp.vim'
-Bundle 'Raimondi/delimitMate'
 Bundle 'myusuf3/numbers.vim'
-"Bundle 'ervandew/supertab'
-"Bundle 'tpope/vim-fugitive'
+Bundle 'octol/vim-cpp-enhanced-highlight'
+Bundle 'ervandew/supertab'
+Bundle 'tpope/vim-fugitive'
+"Bundle 'Raimondi/delimitMate'
+"Bundle 'Yggdroot/indentLine'          
+
+"let g:Powerline_symbols = 'fancy'
+set fillchars+=stl:\ ,stlnc:\
+
+
 
 " General Options
 " -------------------------------------
 set t_Co=256                          " enable 256 colors
+set encoding=utf-8
 set mouse=a                           " make sure mouse is used in all cases.
-set autoread                          " detect external changes
-"set encoding=utf-8
 set autoread                          " detect external changes
 set scrolloff=5                       " lines between cursor and edge
 set autoindent
@@ -58,21 +63,24 @@ set clipboard+=unnamed                " yank and copy to X clipboard
 set number                            " show number line
 set undofile
 set magic                             " enables regex highlight?
+set ttimeoutlen=-1 
+set timeoutlen=300	  				  " esc delay
 "set cc=80                            " 80 char column indicator
 
 " tabs and indenting
 " -------------------------------------
-"set expandtab                         " replace tabs with spaces
 set noexpandtab
 set shiftwidth=4
 set tabstop=4
 set autoindent                        " auto indents next new line
 set smarttab                          " it reads your mind?
 set shiftround                        " better tab aligning
+"set expandtab                         " replace tabs with spaces
 
 " searching
 " -------------------------------------
-set hlsearch                          " highlight search results
+"set hlsearch                          " highlight search results
+set nohlsearch
 set incsearch                         " increment search
 set ignorecase                        " case-insensitive search
 set smartcase                         " upper-case sensitive search
@@ -86,11 +94,9 @@ set wrap                              " word wrap
 set lbr                               " line break
 
 " no bells
+" -------------------------------------
 set noerrorbells visualbell t_vb = 
 autocmd GUIEnter * set visualbell t_vb=
-nnoremap <leader><space> :noh<cr>
-nnoremap <tab> %
-vnoremap <tab> %
 
 " Code Folding
 "---------------------------------
@@ -105,15 +111,16 @@ endif
 " -------------------------------------
 syntax on
 syntax enable
-set background=dark
+"set background=dark
 
 " custom keybindings
 " -------------------------------------
+nnoremap <leader><space> :noh<cr>
+nnoremap <tab> %
+vnoremap <tab> %
+
 " hjkl only
-inoremap <up> <ESC><up>
-inoremap <down> <ESC><down>
-inoremap <left> <ESC>
-inoremap <right> <ESC><right><right>
+
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
@@ -149,12 +156,15 @@ au BufWritePost .vimrc source %
 " save last position
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif "
 
-"disable auto-commenting
+" disable auto-commenting
 au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-"save on lose focus
+" save on lose focus
 au FocusLost * :wa 
 set wildignore+=*.lib,*.dll,*.exe,*.o,*.obj,*.pyc,*.pyo,*.png,*.gif,*.jpg,*.jpeg,*.bmp,*.tiff " ignore filetypes for auto complete
+
+" highlight yacc files as if they were cpp files
+au BufRead,BufNewFile *.y set syntax=cpp
 
 " F key bindings
 " -------------------------------------
@@ -167,7 +177,7 @@ map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 " recreate tags file with F5
 map <F5> :!ctags -R –c++-kinds=+p –fields=+iaS –extra=+q .<CR>
 " create doxygen comment
-"map <F6> :Dox<CR>
+map <F6> :Dox<CR>
 " build using makeprg with <F7>
 map <F7> :make<CR>
 " build using makeprg with <S-F7>
@@ -179,8 +189,6 @@ map <F12> <C-]>
 
 " plugin settings
 " -------------------------------------
-"filetype plugin indent on " required for vundle
-
 " syntastic left side bar color
 hi SignColumn ctermbg=237
 
@@ -191,23 +199,12 @@ let g:indentLine_char = '|'
 " delimiteMate
 let delimitMate_expand_cr=1
 
-" airline
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
 
-" Syntastic
-let g:syntastic_error_symbol = '✘'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_style_error_symbol = '✘'
-let g:syntastic_style_warning_symbol = '⚠'
-let g:syntastic_check_on_wq = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_auto_loc_list = 2
-let g:syntastic_always_populate_loc_list = 1
-" let syntastic_full_redraws = 0
-" let g:sytastic_mode_map = { 'mode': 'active',
-                          " \ 'active_filetypes': ['javascript', 'python'],
-                          " \ 'passive_filetypes': []}
+
+
+" airline
+"let g:airline_powerline_fonts = 1
+"if !exists('g:airline_symbols')
+""  let g:airline_symbols = {}
+"endif
+"let g:airline_symbols.space = "\ua0"
