@@ -5,20 +5,20 @@ set modelines=0 "security hole involving modelines
 filetype plugin indent on "required for vundle
 syntax enable
 
-" should automatically set up vundle and install all bundles is vundle is not installed
-" Setting up Vundle - the vim plugin bundler
-" Run :BundleInstall to install bundles after vundle is installed
-  let iCanHazVundle=1
-  let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-  if !filereadable(vundle_readme)
-      echo "Installing Vundle.."
-      echo ""
-      silent !mkdir -p ~/.vim/bundle
-      silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-      let iCanHazVundle=0
-  endif
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
+" General Options
+" -------------------------------------
+" automatically set up vundle and install all bundles if vundle is not installed
+let iCanHazVundle=1
+let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+	echo "Installing Vundle.."
+	echo ""
+	silent !mkdir -p ~/.vim/bundle
+	silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+	let iCanHazVundle=0
+endif
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/syntastic'
@@ -29,12 +29,15 @@ Bundle 'myusuf3/numbers.vim'
 Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'ervandew/supertab'
 Bundle 'tpope/vim-fugitive'
-"Bundle 'Raimondi/delimitMate'
-"Bundle 'Yggdroot/indentLine'          
+Bundle 'tomtom/tcomment_vim'
+
+"Bundle "MarcWeber/vim-addon-mw-utils"
+"Bundle "tomtom/tlib_vim"
+"Bundle "garbas/vim-snipmate"
+"Bundle "honza/vim-snippets"
 
 "let g:Powerline_symbols = 'fancy'
 set fillchars+=stl:\ ,stlnc:\
-
 
 
 " General Options
@@ -51,7 +54,7 @@ set showcmd                           " display current command
 set cmdheight=1                       " set the command height
 set shortmess+=I                      " disable the welcome screen
 set complete+=k                       " enable dictionary completion
-set wildmenu  " cmd line completion
+set wildmenu  						  " cmd line completion
 set wildmode=list:longest,full
 set wildignore=*.o,*~,*.pyc,*.pyo,*.so,*.sw*,__pycache__
 set ttyfast
@@ -61,21 +64,23 @@ set backspace=indent,eol,start        " behave like a normal backspace
 set laststatus=2                      " always show a status line
 set clipboard+=unnamed                " yank and copy to X clipboard
 set number                            " show number line
-set undofile
+set undofile 						  " store edit history across sessions
 set magic                             " enables regex highlight?
 set ttimeoutlen=-1 
 set timeoutlen=300	  				  " esc delay
 "set cc=80                            " 80 char column indicator
 
+
 " tabs and indenting
 " -------------------------------------
+"set expandtab                         " replace tabs with spaces
 set noexpandtab
 set shiftwidth=4
 set tabstop=4
 set autoindent                        " auto indents next new line
 set smarttab                          " it reads your mind?
 set shiftround                        " better tab aligning
-"set expandtab                         " replace tabs with spaces
+
 
 " searching
 " -------------------------------------
@@ -88,15 +93,18 @@ set gdefault
 set showmatch                         " show matching brackets (),{},[]
 highlight MatchParen cterm=bold ctermfg=Grey ctermbg=DarkGrey
 
+
 "  wrap like other editors
 " -------------------------------------
 set wrap                              " word wrap
 set lbr                               " line break
 
+
 " no bells
 " -------------------------------------
 set noerrorbells visualbell t_vb = 
 autocmd GUIEnter * set visualbell t_vb=
+
 
 " Code Folding
 "---------------------------------
@@ -107,20 +115,21 @@ if has ('folding')
   set foldcolumn=0
 endif
 
+
 " syntax highlighting
 " -------------------------------------
 syntax on
 syntax enable
 "set background=dark
 
+
 " custom keybindings
 " -------------------------------------
-nnoremap <leader><space> :noh<cr>
-nnoremap <tab> %
-vnoremap <tab> %
+"nnoremap <leader><space> :noh<cr>
+"nnoremap <tab> %
+"vnoremap <tab> %
 
 " hjkl only
-
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
@@ -147,6 +156,10 @@ inoremap kk <ESC>
 " allow writing root files when forgetting to sudo
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 
+" F8 to disable all autoindents (for pasting)
+nnoremap <F8> :setl noai nocin nosi inde=<CR> 
+
+
 " auto commands
 " -------------------------------------
 " turn hash bangs into executeables automatically
@@ -166,26 +179,6 @@ set wildignore+=*.lib,*.dll,*.exe,*.o,*.obj,*.pyc,*.pyo,*.png,*.gif,*.jpg,*.jpeg
 " highlight yacc files as if they were cpp files
 au BufRead,BufNewFile *.y set syntax=cpp
 
-" F key bindings
-" -------------------------------------
-" in normal mode F2 will save the file
-nmap <F2> :w<CR>
-" in insert mode F2 will exit insert, save, enters insert again
-imap <F2> <ESC>:w<CR>i
-" switch between header/source with F4
-map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
-" recreate tags file with F5
-map <F5> :!ctags -R –c++-kinds=+p –fields=+iaS –extra=+q .<CR>
-" create doxygen comment
-map <F6> :Dox<CR>
-" build using makeprg with <F7>
-map <F7> :make<CR>
-" build using makeprg with <S-F7>
-map <S-F7> :make clean all<CR>
-"F8 to disable all autoindents (for pasting)
-nnoremap <F8> :setl noai nocin nosi inde=<CR> 
-" goto definition with F12
-map <F12> <C-]>
 
 " plugin settings
 " -------------------------------------
@@ -198,13 +191,3 @@ let g:indentLine_char = '|'
 
 " delimiteMate
 let delimitMate_expand_cr=1
-
-
-
-
-" airline
-"let g:airline_powerline_fonts = 1
-"if !exists('g:airline_symbols')
-""  let g:airline_symbols = {}
-"endif
-"let g:airline_symbols.space = "\ua0"
