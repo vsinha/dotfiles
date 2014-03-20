@@ -5,34 +5,31 @@ else
 	PS1='\[\e[0;32m\]\u@\h\[\e[m\] \[\e[0;34m\]\w\[\e[m\] \[\e[0;32m\]\$\[\e[m\] '
 fi
 
-
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
 # User specific aliases and functions
-#alias vi='vim' # need to get out of this habit
 alias pacman='sudo pacman'
 alias please='sudo '
-alias vi='echo "I think you mean vim"'
-alias ll='ls -l --group-directories-first'
 alias ls='ls -hF --color'
+alias ll='ls -l --group-directories-first'
 alias la='ls -Al'
 alias lock='slimlock'
 alias unmount='udiskie-umount -a'
-
-alias asgard='ssh virajs.in'
-alias midgard='ssh 10.10.1.7'
-
 alias valgrind='valgrind --leak-check=yes'
 alias extract='dtrx'
+#alias winesteam='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-dwrite >/dev/null 2>&1 &'
+#alias sleep='systemctl suspend'
+#alias runcube='( python cubebot.py &> log.txt ) &'
 
-alias winesteam='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-dwrite >/dev/null 2>&1 &'
+alias gits='git status -uno' 						   # hides files not added to the repo
+alias tmux='tmux -2 -u' 							   # 256 color and utf-8
+alias sprunge='curl -F "sprunge=<-" http://sprunge.us' # paste code to web w/ sprunge
 
-alias sleep='systemctl suspend'
-
-alias runcube='( python cubebot.py &> log.txt ) &'
+# ignore some files
+FIGNORE=".o"
 
 # bash_history settings
 shopt -s histappend
@@ -59,7 +56,7 @@ bind '"\e[B": history-search-forward'
 set show-all-if-ambiguous on
 set completion-ignore-case on
 
-# colored manpages
+# colorful manpages
 man() {
   env \
     LESS_TERMCAP_mb=$(printf "\e[1;31m") \
