@@ -24,12 +24,15 @@ Bundle 'gmarik/vundle'
 Bundle 'scrooloose/syntastic'
 Bundle 'vim-scripts/SearchComplete'
 Bundle 'Lokaltog/vim-powerline'
+" Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'myusuf3/numbers.vim'
 Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'ervandew/supertab'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-sleuth'
 Bundle 'tomtom/tcomment_vim'
+Bundle 'christoomey/vim-tmux-navigator'
 
 "Bundle "MarcWeber/vim-addon-mw-utils"
 "Bundle "tomtom/tlib_vim"
@@ -54,7 +57,7 @@ set showcmd                           " display current command
 set cmdheight=1                       " set the command height
 set shortmess+=I                      " disable the welcome screen
 set complete+=k                       " enable dictionary completion
-set wildmenu  						  " cmd line completion
+set wildmenu  			      " cmd line completion
 set wildmode=list:longest,full
 set wildignore=*.o,*~,*.pyc,*.pyo,*.so,*.sw*,__pycache__
 set ttyfast
@@ -64,18 +67,19 @@ set backspace=indent,eol,start        " behave like a normal backspace
 set laststatus=2                      " always show a status line
 set clipboard+=unnamed                " yank and copy to X clipboard
 set number                            " show number line
-set undofile 						  " store edit history across sessions
+set undofile 			      " store edit history across sessions
 set magic                             " enables regex highlight?
 set ttimeoutlen=-1 
-set timeoutlen=300	  				  " esc delay
+set timeoutlen=300	  	      " esc delay
 "set cc=80                            " 80 char column indicator
 
 
 " tabs and indenting
 " -------------------------------------
+" should be taken care of by vim-sleuth 
 "set expandtab                         " replace tabs with spaces
-set noexpandtab
-set shiftwidth=4
+"set noexpandtab
+"set shiftwidth=4
 set tabstop=4
 set autoindent                        " auto indents next new line
 set smarttab                          " it reads your mind?
@@ -84,7 +88,7 @@ set shiftround                        " better tab aligning
 
 " searching
 " -------------------------------------
-"set hlsearch                          " highlight search results
+"set hlsearch                         " highlight search results
 set nohlsearch
 set incsearch                         " increment search
 set ignorecase                        " case-insensitive search
@@ -121,6 +125,7 @@ endif
 syntax on
 syntax enable
 "set background=dark
+hi Visual ctermbg=grey ctermfg=black
 
 
 " custom keybindings
@@ -150,14 +155,17 @@ nnoremap ; :
 " get out of insert mode
 inoremap jj <ESC>
 inoremap jk <ESC>
-inoremap kj <ESC>
-inoremap kk <ESC>
+"inoremap kj <ESC>
+"inoremap kk <ESC>
 
 " allow writing root files when forgetting to sudo
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 
 " F8 to disable all autoindents (for pasting)
 nnoremap <F8> :setl noai nocin nosi inde=<CR> 
+
+" keep macro window from popping up
+map q: :q
 
 
 " auto commands
@@ -191,3 +199,11 @@ let g:indentLine_char = '|'
 
 " delimiteMate
 let delimitMate_expand_cr=1
+
+" airline
+" let g:airline_theme='powerlineish'
+" let g:airline_powerline_fonts = 1
+" let g:airline_section_z=''
+" let g:airline_left_sep=''
+" let g:airline_right_sep=''
+" autocmd VimEnter * AirlineToggleWhitespace
