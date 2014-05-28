@@ -21,7 +21,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 Bundle 'vim-scripts/SearchComplete'
 Bundle 'Lokaltog/vim-powerline'
 " Bundle 'bling/vim-airline'
@@ -43,10 +43,14 @@ Bundle 'christoomey/vim-tmux-navigator'
 set fillchars+=stl:\ ,stlnc:\
 
 
+" OSX specific options
+" -------------------------------------
+set clipboard=unnamed 		      " yy p etc all use the mac clipboard
+
+
 " General Options
 " -------------------------------------
 set t_Co=256                          " enable 256 colors
-set encoding=utf-8
 set mouse=a                           " make sure mouse is used in all cases.
 set autoread                          " detect external changes
 set scrolloff=5                       " lines between cursor and edge
@@ -80,7 +84,7 @@ set timeoutlen=300	  	      " esc delay
 "set expandtab                         " replace tabs with spaces
 "set noexpandtab
 "set shiftwidth=4
-set tabstop=4
+set tabstop=2
 set autoindent                        " auto indents next new line
 set smarttab                          " it reads your mind?
 set shiftround                        " better tab aligning
