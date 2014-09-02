@@ -30,7 +30,7 @@ Bundle 'myusuf3/numbers.vim'
 Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'ervandew/supertab'
 Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-sleuth'
+" Bundle 'tpope/vim-sleuth'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'christoomey/vim-tmux-navigator'
 
@@ -67,22 +67,35 @@ set backspace=indent,eol,start        " behave like a normal backspace
 set laststatus=2                      " always show a status line
 set clipboard+=unnamed                " yank and copy to X clipboard
 set number                            " show number line
-set undofile 			      " store edit history across sessions
 set magic                             " enables regex highlight?
 set ttimeoutlen=-1 
 set timeoutlen=300	  	      " esc delay
 "set cc=80                            " 80 char column indicator
 
 
+" undofile 
+" -------------------------------------
+if exists("+undofile")
+  " Uses .vim-undo first, then ~/.vim/undo
+  " :help undo-persistence
+  " (This is only present in 7.3+)
+  if isdirectory($HOME . '/.vim/undo') == 0
+    :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
+  endif
+  set undodir=./.vim-undo//
+  set undodir+=~/.vim/undo//
+  set undofile
+endif
+
 " tabs and indenting
 " -------------------------------------
 " should be taken care of by vim-sleuth 
-"set expandtab                         " replace tabs with spaces
+set expandtab                         " replace tabs with spaces
 "set noexpandtab
-"set shiftwidth=4
-set tabstop=4
+set shiftwidth=4
+set tabstop=2
 set autoindent                        " auto indents next new line
-set smarttab                          " it reads your mind?
+"set smarttab                          " it reads your mind?
 set shiftround                        " better tab aligning
 
 
