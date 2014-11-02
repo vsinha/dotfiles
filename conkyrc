@@ -13,30 +13,19 @@ color1 999999
 template0 │
 
 TEXT
-${if_running clementine}\
 $template0 \
-${execi 100 nowplaying} \
-${endif} \
+↑ ${upspeed ens33} \
+↓ ${downspeed ens33} \
 $template0 \
-/ ${fs_used_perc /}% \
+CPU: ${loadavg 1}% \
 $template0 \
-/home ${fs_used_perc /home}% \
+RAM: ${memperc}% \
 $template0 \
-/mnt/torrents ${fs_used_perc /mnt/torrents}% \
+/: ${fs_used_perc /}% \
 $template0 \
-/mnt/media ${fs_used_perc /mnt/media}% \
-$template0 \
-RAM ${memperc}% \
-$template0 \
-${loadavg} \
-$template0 \
-↓ ${downspeed eth0} \
- ↑ ${upspeed eth0} \
-$template0 \
-${addr eth0} \
-$template0 \
-${execi 300 weather "47906"} \
+${battery_short BAT2} ${battery_time BAT2} \
 $template0 \
 ${time %a %m/%d} \
 $template0 \
 ${time %I:%M %P} \
+
