@@ -21,7 +21,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 Bundle 'vim-scripts/SearchComplete'
 Bundle 'Lokaltog/vim-powerline'
 " Bundle 'bling/vim-airline'
@@ -72,7 +72,6 @@ set ttimeoutlen=-1
 set timeoutlen=300	  	      " esc delay
 "set cc=80                            " 80 char column indicator
 
-
 " undofile 
 " -------------------------------------
 if exists("+undofile")
@@ -121,6 +120,9 @@ set lbr                               " line break
 " -------------------------------------
 set noerrorbells visualbell t_vb = 
 autocmd GUIEnter * set visualbell t_vb=
+
+" Syntax for antlr files
+au BufRead,BufNewFile *.g4 set syntax=antlr3
 
 
 " Code Folding
@@ -171,6 +173,10 @@ inoremap jk <ESC>
 "inoremap kj <ESC>
 "inoremap kk <ESC>
 
+" some emacs-esque keybindings
+noremap <C-a> <Home>
+noremap <C-e> <End>
+
 " allow writing root files when forgetting to sudo
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 
@@ -212,6 +218,8 @@ let g:indentLine_char = '|'
 
 " delimiteMate
 let delimitMate_expand_cr=1
+
+"let g:Powerline_symbols = 'fancy'
 
 " airline
 " let g:airline_theme='powerlineish'
