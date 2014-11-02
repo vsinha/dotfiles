@@ -1,8 +1,9 @@
 # .bashrc
 if [ -n "$SSH_CLIENT" ]; then
-	PS1='\[\e[0;32m\]\u@\[\e[m\]\[\e[0;33m\]\h\[\e[m\] \[\e[0;34m\]\w\[\e[m\] \[\e[0;32m\]\$\[\e[m\] '
+  # change colors in ssh
+	PS1='\[\e[0;34m\]\w\[\e[m\] \[\e[0;32m\]\$\[\e[m\] '
 else
-	PS1='\[\e[0;32m\]\u@\h\[\e[m\] \[\e[0;34m\]\w\[\e[m\] \[\e[0;32m\]\$\[\e[m\] '
+  PS1='\[\e[0;34m\]\w [$(vcprompt -f "%b%m")] \[\e[0;32m\]\$\[\e[m\] '
 fi
 
 # Source global definitions
@@ -24,9 +25,13 @@ alias extract='dtrx'
 #alias sleep='systemctl suspend'
 #alias runcube='( python cubebot.py &> log.txt ) &'
 
+alias git='hub'
 alias gits='git status -uno' 						   # hides files not added to the repo
 alias tmux='tmux -2 -u' 							   # 256 color and utf-8
 alias sprunge='curl -F "sprunge=<-" http://sprunge.us' # paste code to web w/ sprunge
+
+alias antlr4='java -jar /usr/local/lib/antlr-4.4-complete.jar'
+alias grun='java org.antlr.v4.runtime.misc.TestRig'
 
 # ignore some files
 FIGNORE=".o"
@@ -56,6 +61,16 @@ bind '"\e[B": history-search-forward'
 set show-all-if-ambiguous on
 set completion-ignore-case on
 
+export TERM='xterm-256color'
+
+#export REPOSITORY=$HOME/nupic
+export NUPIC=$HOME/nupic
+export NTA=$NUPIC/build/release
+export NTA_ROOTDIR=$NTA
+export PYTHONPATH=$PYTHONPATH:$NTA/lib/python2.7/site-packages
+
+export python='python2'
+
 # colorful manpages
 man() {
   env \
@@ -68,3 +83,8 @@ man() {
     LESS_TERMCAP_us=$(printf "\e[1;32m") \
       man "$@"
 }
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+#set wallpaper
+feh --bg-scale /home/viraj/Pictures/whaleclouds.jpg
