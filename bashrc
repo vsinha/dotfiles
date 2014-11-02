@@ -3,6 +3,7 @@ if [ -n "$SSH_CLIENT" ]; then
   # change colors in ssh
 	PS1='\[\e[0;34m\]\w\[\e[m\] \[\e[0;32m\]\$\[\e[m\] '
 else
+	# PS1='\[\e[0;34m\]\w\[\e[m\] \[\e[0;32m\]\$\[\e[m\] '
   PS1='\[\e[0;34m\]\w [$(vcprompt -f "%b%m")] \[\e[0;32m\]\$\[\e[m\] '
 fi
 
