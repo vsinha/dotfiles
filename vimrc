@@ -33,6 +33,8 @@ Bundle 'tpope/vim-fugitive'
 " Bundle 'tpope/vim-sleuth'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'terryma/vim-expand-region'
 
 "Bundle "MarcWeber/vim-addon-mw-utils"
 "Bundle "tomtom/tlib_vim"
@@ -68,7 +70,7 @@ set laststatus=2                      " always show a status line
 set clipboard+=unnamed                " yank and copy to X clipboard
 set number                            " show number line
 set magic                             " enables regex highlight?
-set ttimeoutlen=-1 
+set ttimeoutlen=30
 set timeoutlen=300	  	      " esc delay
 "set cc=80                            " 80 char column indicator
 
@@ -149,6 +151,16 @@ hi Visual ctermbg=grey ctermfg=black
 "nnoremap <tab> %
 "vnoremap <tab> %
 
+" space is leader (all hail space)
+let mapleader = "\<Space>"
+
+" save quicker
+nnoremap <Leader>w :w<CR>
+
+" v to expand selection, <C-v> to reduce
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
 " hjkl only
 nnoremap j gj
 nnoremap k gk
@@ -172,10 +184,6 @@ inoremap jj <ESC>
 inoremap jk <ESC>
 "inoremap kj <ESC>
 "inoremap kk <ESC>
-
-" some emacs-esque keybindings
-noremap <C-a> <Home>
-noremap <C-e> <End>
 
 " allow writing root files when forgetting to sudo
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
@@ -218,6 +226,18 @@ let g:indentLine_char = '|'
 
 " delimiteMate
 let delimitMate_expand_cr=1
+
+" ctrl p uses gitignore
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+let g:ctrlp_use_caching = 0
+
+" easymotion config
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+
+let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
 "let g:Powerline_symbols = 'fancy'
 
