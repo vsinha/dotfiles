@@ -1,3 +1,20 @@
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+case "$OSTYPE" in
+    darwin*)
+        if [ -f `brew --prefix`/etc/bash_completion.d/git-prompt.sh ]; then
+        . `brew --prefix`/etc/bash_completion.d/git-prompt.sh
+        fi
+        ;;
+esac
+
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
 # .bashrc
 if [ -n "$SSH_CLIENT" ]; then
   # change colors in ssh
@@ -31,10 +48,10 @@ alias vimrc='vim ~/.vimrc'
 #alias winesteam='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-dwrite >/dev/null 2>&1 &'
 #alias sleep='systemctl suspend'
 #alias runcube='( python cubebot.py &> log.txt ) &'
-
-alias git='hub'
-alias gits='git status -uno' 						   # hides files not added to the repo
-alias tmux='tmux -2 -u' 							   # 256 color and utf-8
+alias git=hub
+alias gits='git status -uno'  # hides files not added to the repo
+alias gitl='git log --graph --full-history --all --pretty=format:"%h%x09%d%x20%s"'
+alias tmux='tmux -2 -u'       # 256 color and utf-8
 alias sprunge='curl -F "sprunge=<-" http://sprunge.us' # paste code to web w/ sprunge
 
 alias antlr4='java -jar /usr/local/lib/antlr-4.4-complete.jar'
@@ -49,18 +66,22 @@ unset HISTFILESIZE
 HISTSIZE=1000000
 export HISTCONTROL=ignoreboth
 
+export PATH=/Users/vjsinha/Library/Python/2.7/bin:/Users/vjsinha/bin:/Users/vjsinha/.gem/ruby/1.9.1/bin:/opt/android-sdk/platform-tools:/opt/android-sdk/tools:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
+
+
 # disable ^C echo
 set echo-control-characters off
 
-# export some system variables
-export LD_LIBRARY_PATH=/opt/AftershotPro/lib:$LD_LIBRARY_PATH
-export PATH=$HOME/bin:$HOME/.gem/ruby/1.9.1/bin:/opt/android-sdk/platform-tools:/opt/android-sdk/tools:$PATH
-export CLASSPATH="$CLASSPATH:$HOME/.lein/self-installs/leiningen-2.0.0-preview10-standalone.jar"
 export EDITOR="/usr/bin/vim"
 
 # autocompletes
 complete -cf sudo
 complete -cf man
+
+# git command line autocompletion
+if [ -f ~/.git-completion.bash ]; then
+    . ~/.git-completion.bash
+fi
 
 # bash history completion, bound to down and up arrows
 bind '"\e[A": history-search-backward'
@@ -95,3 +116,8 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 #set wallpaper
 feh --bg-scale /home/viraj/Pictures/whaleclouds.jpg
+
+# nupic env
+#export NUPIC=/Users/vjsinha/nta/nupic
+#export NTA=$NUPIC/build/release
+#export PYTHONPATH=$PYTHONPATH:$NTA/lib/python2.7/site-packages

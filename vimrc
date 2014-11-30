@@ -45,10 +45,14 @@ Bundle 'terryma/vim-expand-region'
 set fillchars+=stl:\ ,stlnc:\
 
 
+" OSX specific options
+" -------------------------------------
+set clipboard=unnamed 		      " yy p etc all use the mac clipboard
+
+
 " General Options
 " -------------------------------------
 set t_Co=256                          " enable 256 colors
-set encoding=utf-8
 set mouse=a                           " make sure mouse is used in all cases.
 set autoread                          " detect external changes
 set scrolloff=5                       " lines between cursor and edge
