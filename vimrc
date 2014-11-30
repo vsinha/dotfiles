@@ -30,16 +30,13 @@ Bundle 'myusuf3/numbers.vim'
 Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'ervandew/supertab'
 Bundle 'tpope/vim-fugitive'
-" Bundle 'tpope/vim-sleuth'
+Bundle 'tpope/vim-sleuth' 
 Bundle 'tomtom/tcomment_vim'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'justinmk/vim-sneak'
+Bundle 'Lokaltog/vim-easymotion'
 Bundle 'terryma/vim-expand-region'
-
-"Bundle "MarcWeber/vim-addon-mw-utils"
-"Bundle "tomtom/tlib_vim"
-"Bundle "garbas/vim-snipmate"
-"Bundle "honza/vim-snippets"
+Bundle 'chase/vim-ansible-yaml'
 
 "let g:Powerline_symbols = 'fancy'
 set fillchars+=stl:\ ,stlnc:\
@@ -98,7 +95,7 @@ endif
 set expandtab                         " replace tabs with spaces
 "set noexpandtab
 set shiftwidth=4
-set tabstop=2
+set softtabstop=4
 set autoindent                        " auto indents next new line
 "set smarttab                          " it reads your mind?
 set shiftround                        " better tab aligning
@@ -145,7 +142,8 @@ endif
 " -------------------------------------
 syntax on
 syntax enable
-"set background=dark
+set background=dark
+colorscheme default
 hi Visual ctermbg=grey ctermfg=black
 
 
@@ -242,6 +240,7 @@ map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
 
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+
 
 "let g:Powerline_symbols = 'fancy'
 
