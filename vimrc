@@ -33,7 +33,7 @@ Bundle 'tpope/vim-fugitive'
 " Bundle 'tpope/vim-sleuth'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'Lokaltog/vim-easymotion'
+Bundle 'justinmk/vim-sneak'
 Bundle 'terryma/vim-expand-region'
 
 "Bundle "MarcWeber/vim-addon-mw-utils"
@@ -70,7 +70,7 @@ set laststatus=2                      " always show a status line
 set clipboard+=unnamed                " yank and copy to X clipboard
 set number                            " show number line
 set magic                             " enables regex highlight?
-set ttimeoutlen=30
+set ttimeoutlen=50
 set timeoutlen=300	  	      " esc delay
 "set cc=80                            " 80 char column indicator
 
@@ -177,7 +177,7 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 " autocorrect plx
-nnoremap ; :
+"nnoremap ; :
 
 " get out of insert mode
 inoremap jj <ESC>
