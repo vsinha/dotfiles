@@ -12,9 +12,13 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+if [ -f ~/z ]; then
+    # else clone https://github.com/rupa/z to ~/
+  . ~/z/z.sh
+fi
+
 # User specific aliases and functions
 alias pacman='sudo pacman'
-alias please='sudo '
 alias ls='ls -hF --color'
 alias ll='ls -l --group-directories-first'
 alias la='ls -Al'
@@ -22,6 +26,8 @@ alias lock='slimlock'
 alias unmount='udiskie-umount -a'
 alias valgrind='valgrind --leak-check=yes'
 alias extract='dtrx'
+alias valhalla='ssh viraj@valhalla.vsinha.com'
+alias vimrc='vim ~/.vimrc'
 #alias winesteam='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-dwrite >/dev/null 2>&1 &'
 #alias sleep='systemctl suspend'
 #alias runcube='( python cubebot.py &> log.txt ) &'
