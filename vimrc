@@ -37,6 +37,7 @@ Bundle 'justinmk/vim-sneak'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'terryma/vim-expand-region'
 Bundle 'chase/vim-ansible-yaml'
+Bundle 'vim-scripts/st.vim'
 
 "let g:Powerline_symbols = 'fancy'
 set fillchars+=stl:\ ,stlnc:\
@@ -195,6 +196,11 @@ nnoremap <F8> :setl noai nocin nosi inde=<CR>
 
 " keep macro window from popping up
 map q: :q
+
+vmap <C-x> :!pbcopy<CR>  
+vmap <C-c> :w !pbcopy<CR><CR> 
+
+set clipboard=unnamed
 
 
 " auto commands
