@@ -26,3 +26,16 @@ precmd() {
   fi
 }
 
+if [[ -s $HOME/.rvm/scripts/rvm ]]; then
+  source $HOME/.rvm/scripts/rvm;
+fi
+
+
+if [[ -s /usr/local/bin/virtualenvwrapper.sh ]]; then
+  source /usr/local/bin/virtualenvwrapper.sh
+fi
+
+# OPAM configuration
+. /Users/viraj/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

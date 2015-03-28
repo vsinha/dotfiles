@@ -19,3 +19,9 @@ function extract {
       echo "'$1' is not a valid file"
   fi
 }
+
+precmd () {
+      tab_label=${PWD/${HOME}/\~} # use 'relative' path
+      echo -ne "\e]2;${tab_label}\a" # set window title to full string
+      echo -ne "\e]1;${tab_label: -24}\a" # set tab title to rightmost 24 characters
+}

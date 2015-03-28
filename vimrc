@@ -20,24 +20,34 @@ endif
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
-"Bundle 'scrooloose/syntastic'
-Bundle 'vim-scripts/SearchComplete'
-Bundle 'Lokaltog/vim-powerline'
-" Bundle 'bling/vim-airline'
-Bundle 'kien/ctrlp.vim'
-Bundle 'myusuf3/numbers.vim'
-Bundle 'octol/vim-cpp-enhanced-highlight'
-Bundle 'ervandew/supertab'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-sleuth' 
-Bundle 'tomtom/tcomment_vim'
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'justinmk/vim-sneak'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'terryma/vim-expand-region'
-Bundle 'chase/vim-ansible-yaml'
-Bundle 'vim-scripts/st.vim'
+Plugin 'gmarik/vundle'
+Plugin 'scrooloose/syntastic'
+Plugin 'vim-scripts/SearchComplete'
+Plugin 'Lokaltog/vim-powerline'
+" Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
+Plugin 'myusuf3/numbers.vim'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-sleuth' 
+Plugin 'tomtom/tcomment_vim'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'justinmk/vim-sneak'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'terryma/vim-expand-region'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'vim-scripts/st.vim'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'Valloric/YouCompleteMe'
+
+" javascript / react
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+let g:jsx_ext_required = 0
+
 
 "let g:Powerline_symbols = 'fancy'
 set fillchars+=stl:\ ,stlnc:\
@@ -102,6 +112,8 @@ set autoindent                        " auto indents next new line
 set shiftround                        " better tab aligning
 
 
+
+
 " searching
 " -------------------------------------
 "set hlsearch                         " highlight search results
@@ -143,9 +155,12 @@ endif
 " -------------------------------------
 syntax on
 syntax enable
+let g:solarized_termcolors=256
 set background=dark
-colorscheme default
-hi Visual ctermbg=grey ctermfg=black
+colorscheme solarized
+"let g:solarized_contrast="high"
+
+"hi Visual ctermbg=grey ctermfg=black
 
 
 " custom keybindings
@@ -222,11 +237,76 @@ set wildignore+=*.lib,*.dll,*.exe,*.o,*.obj,*.pyc,*.pyo,*.png,*.gif,*.jpg,*.jpeg
 " highlight yacc files as if they were cpp files
 au BufRead,BufNewFile *.y set syntax=cpp
 
+" haskell specific settings
+autocmd FileType haskell set tabstop=8|set expandtab|set softtabstop=4|set shiftwidth=4|set shiftround
+
+" create a module separator/header with keycode "--s"
+" like so: 
+"--------------------------------------------------------------------------------
+"--  my section
+"
+let s:width = 80
+function! HaskellModuleSection(...)
+    let name = 0 < a:0 ? a:1 : inputdialog("Section name: ")
+
+    return  repeat('-', s:width) . "\n"
+    \       . "--  " . name . "\n"
+    \       . "\n"
+endfunction
+nmap <silent> --s "=HaskellModuleSection()<CR>gp
+
+
+" create a module header with keycode "--h"
+" like so:
+"--------------------------------------------------------------------------------
+"-- | 
+"-- Module      : MyModule
+"-- Note        : This is a preview
+"-- 
+"-- This is an empty module, to show the headercomment produced. 
+"-- 
+"-------------------------------------------------------------------------------- 
+let s:width = 80
+
+function! HaskellModuleHeader(...)
+    let name = 0 < a:0 ? a:1 : inputdialog("Module: ")
+    let note = 1 < a:0 ? a:2 : inputdialog("Note: ")
+    let description = 2 < a:0 ? a:3 : inputdialog("Describe this module: ")
+    
+    return  repeat('-', s:width) . "\n" 
+    \       . "-- | \n" 
+    \       . "-- Module      : " . name . "\n"
+    \       . "-- Note        : " . note . "\n"
+    \       . "-- \n"
+    \       . "-- " . description . "\n"
+    \       . "-- \n"
+    \       . repeat('-', s:width) . "\n"
+    \       . "\n"
+endfunction
+nmap <silent> --h "=HaskellModuleHeader()<CR>:0put =<CR>
+
 
 " plugin settings
 " -------------------------------------
 " syntastic left side bar color
-hi SignColumn ctermbg=237
+"hi SignColumn ctermbg=237
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" On by default, turn it off for html
+let g:syntastic_mode_map = { 'mode': 'active',
+    \ 'active_filetypes': [],
+    \ 'passive_filetypes': ['html'] }
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_signs=1
+" fix react settings
+let g:syntastic_javascript_checkers = ['jsxhint']
+let g:syntastic_javascript_jsxhint_exec = 'jsx-jshint-wrapper'
 
 " indentLine
 let g:indentLine_color_term = 234
