@@ -123,7 +123,6 @@ set ignorecase                        " case-insensitive search
 set smartcase                         " upper-case sensitive search
 set gdefault
 set showmatch                         " show matching brackets (),{},[]
-highlight MatchParen cterm=bold ctermfg=Grey ctermbg=DarkGrey
 
 
 "  wrap like other editors
@@ -159,6 +158,7 @@ let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 "let g:solarized_contrast="high"
+"highlight MatchParen cterm=bold ctermfg=Grey ctermbg=DarkGrey
 
 "hi Visual ctermbg=grey ctermfg=black
 
@@ -239,6 +239,30 @@ au BufRead,BufNewFile *.y set syntax=cpp
 
 " haskell specific settings
 autocmd FileType haskell set tabstop=8|set expandtab|set softtabstop=4|set shiftwidth=4|set shiftround
+
+
+" this function should auto-toggle paste mode when using cmd+v to paste
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
+
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
+
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 " create a module separator/header with keycode "--s"
 " like so: 

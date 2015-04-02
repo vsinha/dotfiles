@@ -20,7 +20,7 @@ alias gits='git status -uno'  # hides files not added to the repo
 alias gitl='git log --graph --full-history --all --pretty=format:"%h%x09%d%x20%s"'
 alias gitb='git branch -l'
 
-alias vim='mvim -v'
+alias vim='DYLD_FORCE_FLAT_NAMESPACE=1 mvim -v'
 alias vimrc='vim ~/.vimrc'
 
 alias airport=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport
@@ -35,6 +35,8 @@ alias hstop="/usr/local/Cellar/hadoop/2.6.0/sbin/stop-yarn.sh;/usr/local/Cellar/
 #edit zshell things
 alias zalias="vim ~/dotfiles/zsh/aliases.zsh"
 alias zexports="vim ~/dotfiles/zsh/exports.zsh"
+
+alias d="cd ~/wire/down-server && workon down-env"
 
 stream() {
     peerflix $1 --vlc
