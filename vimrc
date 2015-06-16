@@ -24,7 +24,6 @@ Plugin 'gmarik/vundle'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-scripts/SearchComplete'
 Plugin 'Lokaltog/vim-powerline'
-" Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
@@ -40,17 +39,19 @@ Plugin 'chase/vim-ansible-yaml'
 Plugin 'vim-scripts/st.vim'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'jiangmiao/auto-pairs'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'scrooloose/nerdcommenter'
+Plugin 'ingydotnet/yaml-vim'
 
 " javascript / react
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 let g:jsx_ext_required = 0
 
-
-"let g:Powerline_symbols = 'fancy'
-set fillchars+=stl:\ ,stlnc:\
+" haskell
+Plugin 'raichoo/haskell-vim'
+Plugin 'adinapoli/cumino'
 
 
 " OSX specific options
@@ -73,7 +74,7 @@ set shortmess+=I                      " disable the welcome screen
 set complete+=k                       " enable dictionary completion
 set wildmenu  			      " cmd line completion
 set wildmode=list:longest,full
-set wildignore=*.o,*~,*.pyc,*.pyo,*.so,*.sw*,__pycache__
+set wildignore=*.o,*~,*.pyc,*.pyo,*.so,*.sw*,__pycache__,*/tmp/*,*.swp,*.zip 
 set ttyfast
 set ruler                             " ruler display in status line
 set backspace=2                       " full backspacing capabilities
@@ -82,8 +83,8 @@ set laststatus=2                      " always show a status line
 set clipboard+=unnamed                " yank and copy to X clipboard
 set number                            " show number line
 set magic                             " enables regex highlight?
-set ttimeoutlen=50
-set timeoutlen=300	  	      " esc delay
+set ttimeoutlen=70
+set timeoutlen=400	  	      " esc delay
 "set cc=80                            " 80 char column indicator
 
 " undofile 
@@ -171,6 +172,7 @@ colorscheme solarized
 
 " space is leader (all hail space)
 let mapleader = "\<Space>"
+let maplocalleader = "\\"
 
 " save quicker
 nnoremap <Leader>w :w<CR>
@@ -352,12 +354,13 @@ map <Leader>h <Plug>(easymotion-linebackward)
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
 
-"let g:Powerline_symbols = 'fancy'
 
-" airline
-" let g:airline_theme='powerlineish'
-" let g:airline_powerline_fonts = 1
-" let g:airline_section_z=''
-" let g:airline_left_sep=''
-" let g:airline_right_sep=''
-" autocmd VimEnter * AirlineToggleWhitespace
+"if has("mac") || has("macunix")
+"    set guifont=Monaco\ for\ Powerline:h24
+"elseif has("win32") || has("win64")
+"    set guifont=Monaco\ for\ Powerline:h14:cANSI
+"    set renderoptions=type:directx,renmode:5
+"endif
+set guifont=Monaco\ for\ Powerline\ for\ Powerline
+let g:Powerline_symbols = 'fancy'
+

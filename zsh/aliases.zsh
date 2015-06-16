@@ -22,6 +22,7 @@ alias gitb='git branch -l'
 
 alias vim='DYLD_FORCE_FLAT_NAMESPACE=1 mvim -v'
 alias vimrc='vim ~/.vimrc'
+export EDITOR='DYLD_FORCE_FLAT_NAMESPACE=1 mvim -v'
 
 alias airport=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport
 
