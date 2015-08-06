@@ -15,7 +15,7 @@ export GOPATH=$HOME/dev/go/
 export PATH="\
 bin:script:node_modules/.bin\
 :$HOME/.bin:$HOME/.gem/bin:$HOME/.pyenv/bin:$HOME/.pyenv/shims:$HOME/.opam/system/bin:$HOME/.rvm/bin:$HOME/Library/Haskell/bin:$HOME/bin\
-:$HOME/.gem/ruby/2.2.0/bin
+:$HOME/.gem/ruby/2.2.0/bin\
 :$GOPATH/bin\
 :/Applications/Postgres.app/Contents/Versions/9.3/bin\
 :/usr/local/opt/go/libexec/bin:/usr/local/share/npm/bin:/usr/local/MacGPG2/bin:/usr/local/sbin:/usr/local/bin\
