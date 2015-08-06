@@ -242,6 +242,9 @@ au BufRead,BufNewFile *.y set syntax=cpp
 " haskell specific settings
 autocmd FileType haskell set tabstop=8|set expandtab|set softtabstop=4|set shiftwidth=4|set shiftround
 
+" don't do fancy stuff with cron files
+autocmd filetype crontab setlocal nobackup nowritebackup
+
 
 " this function should auto-toggle paste mode when using cmd+v to paste
 function! WrapForTmux(s)

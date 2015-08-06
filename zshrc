@@ -14,6 +14,7 @@ source $ZSH_BASE/functions.zsh
 source $ZSH_BASE/history.zsh
 source $ZSH_BASE/zsh_hooks.zsh
 source $BASE/z/z.sh
+source $BASE/k/k.sh
 
 
 if [[ -s $HOME/.rvm/scripts/rvm ]]; then
@@ -35,3 +36,16 @@ pyenv() { # lazy load
   eval "$( command pyenv init - )"
   pyenv "$@"
 }
+
+# iterm2 shell integration
+source ~/.iterm2_shell_integration.`basename $SHELL`
+
+# qfc
+# ctrl-f to complete the word under the cursor
+#while qfc is open:
+#TAB: Append the selected match to the current path.
+#ENTER: Append the selected match to the current path and returns the result.
+#Ctrl-f: Returns the current path.
+#Arrow keys: Navigation between files.
+[[ -s "$HOME/.qfc/bin/qfc.sh" ]] && source "$HOME/.qfc/bin/qfc.sh"
+
