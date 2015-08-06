@@ -42,3 +42,5 @@ alias d="cd ~/wire/down-server && workon down-env"
 stream() {
     peerflix $1 --vlc
 }
+
+alias quote='nc pchs.co 17'
