@@ -20,11 +20,38 @@ function extract {
   fi
 }
 
-precmd () {
-  tab_label=${PWD/${HOME}/\~} # use 'relative' path
-  echo -ne "\e]2;${tab_label}\a" # set window title to full string
-  echo -ne "\e]1;${tab_label: -24}\a" # set tab title to rightmost 24 characters
-  if [[ -n "$TMUX" ]]; then
-    tmux setenv "$(tmux display -p 'TMUX_PWD_#D')" "$PWD"
+
+####
+# set the window title to our current directory
+set-window-title() {
+  # /Users/clessg/projects/dotfiles -> ~/p/dotfiles
+  window_title="\e]0;${${PWD/#"$HOME"/~}/projects/p}\a"
+  echo -ne "$window_title"
+}
+
+PR_TITLEBAR=''
+set-window-title
+add-zsh-hook precmd set-window-title
+####
+
+# ctrl+z from the terminal attempts to fg 
+# (allows ctrl+z to switch back and forth like a pro)
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
   fi
 }
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
+
+# launch vim's ctrl+p from zsh
+ctrlp() {
+  </dev/tty vim -c CtrlP
+}
+zle -N ctrlp
+
+bindkey "^p" ctrlp

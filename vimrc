@@ -20,34 +20,49 @@ endif
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Plugin 'gmarik/vundle'
-Plugin 'scrooloose/syntastic'
-Plugin 'vim-scripts/SearchComplete'
 Plugin 'Lokaltog/vim-powerline'
+Plugin 'vim-scripts/SearchComplete'
+Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'kien/ctrlp.vim'
 Plugin 'myusuf3/numbers.vim'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'ervandew/supertab'
+Plugin 'altercation/vim-colors-solarized'
+"Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sleuth' 
-Plugin 'tomtom/tcomment_vim'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'justinmk/vim-sneak'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'terryma/vim-expand-region'
-Plugin 'chase/vim-ansible-yaml'
+"Plugin 'tomtom/tcomment_vim'
 Plugin 'vim-scripts/st.vim'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'Lokaltog/vim-easymotion'
+"Plugin 'terryma/vim-expand-region'
+"Plugin 'chase/vim-ansible-yaml'
+Plugin 'scrooloose/nerdcommenter'
 "Plugin 'jiangmiao/auto-pairs'
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'scrooloose/nerdcommenter'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'ingydotnet/yaml-vim'
+"Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'bling/vim-bufferline'
 
+"Plugin 'vim-scripts/st.vim'
+Plugin 'jelera/vim-javascript-syntax'
 " javascript / react
 Plugin 'pangloss/vim-javascript'
+
+Plugin 'ternjs/tern_for_vim'
+autocmd FileType javascript setlocal omnifunc=tern#Complete
+
 Plugin 'mxw/vim-jsx'
 let g:jsx_ext_required = 0
+
+Plugin 'leafgarland/typescript-vim'
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+au BufReadPost *.ts set syntax=typescript
+
+Plugin 'digitaltoad/vim-jade'
+au BufReadPost *.jade set syntax=jade
+
+Plugin 'mustache/vim-mustache-handlebars'
+au BufReadPost *.handlebars set syntax=mustache
 
 " haskell
 Plugin 'raichoo/haskell-vim'
@@ -80,11 +95,11 @@ set ruler                             " ruler display in status line
 set backspace=2                       " full backspacing capabilities
 set backspace=indent,eol,start        " behave like a normal backspace
 set laststatus=2                      " always show a status line
-set clipboard+=unnamed                " yank and copy to X clipboard
+set ttimeoutlen=70
 set number                            " show number line
 set magic                             " enables regex highlight?
-set ttimeoutlen=70
-set timeoutlen=400	  	      " esc delay
+set ttimeoutlen=200
+set timeoutlen=100	  	      " esc delay
 "set cc=80                            " 80 char column indicator
 
 " undofile 
@@ -269,56 +284,11 @@ endfunction
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
-" create a module separator/header with keycode "--s"
-" like so: 
-"--------------------------------------------------------------------------------
-"--  my section
-"
-let s:width = 80
-function! HaskellModuleSection(...)
-    let name = 0 < a:0 ? a:1 : inputdialog("Section name: ")
-
-    return  repeat('-', s:width) . "\n"
-    \       . "--  " . name . "\n"
-    \       . "\n"
-endfunction
-nmap <silent> --s "=HaskellModuleSection()<CR>gp
-
-
-" create a module header with keycode "--h"
-" like so:
-"--------------------------------------------------------------------------------
-"-- | 
-"-- Module      : MyModule
-"-- Note        : This is a preview
-"-- 
-"-- This is an empty module, to show the headercomment produced. 
-"-- 
-"-------------------------------------------------------------------------------- 
-let s:width = 80
-
-function! HaskellModuleHeader(...)
-    let name = 0 < a:0 ? a:1 : inputdialog("Module: ")
-    let note = 1 < a:0 ? a:2 : inputdialog("Note: ")
-    let description = 2 < a:0 ? a:3 : inputdialog("Describe this module: ")
-    
-    return  repeat('-', s:width) . "\n" 
-    \       . "-- | \n" 
-    \       . "-- Module      : " . name . "\n"
-    \       . "-- Note        : " . note . "\n"
-    \       . "-- \n"
-    \       . "-- " . description . "\n"
-    \       . "-- \n"
-    \       . repeat('-', s:width) . "\n"
-    \       . "\n"
-endfunction
-nmap <silent> --h "=HaskellModuleHeader()<CR>:0put =<CR>
-
 
 " plugin settings
 " -------------------------------------
 " syntastic left side bar color
-"hi SignColumn ctermbg=237
+hi SignColumn ctermbg=235
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -328,14 +298,14 @@ let g:syntastic_mode_map = { 'mode': 'active',
     \ 'active_filetypes': [],
     \ 'passive_filetypes': ['html'] }
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_signs=1
-" fix react settings
-let g:syntastic_javascript_checkers = ['jsxhint']
-let g:syntastic_javascript_jsxhint_exec = 'jsx-jshint-wrapper'
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_enable_signs=1
+"" fix react settings
+"let g:syntastic_javascript_checkers = ['eslint']
+
 
 " indentLine
 let g:indentLine_color_term = 234
@@ -343,10 +313,10 @@ let g:indentLine_char = '|'
 
 " delimiteMate
 let delimitMate_expand_cr=1
+imap <C-c> <CR><Esc>O
 
-" ctrl p uses gitignore
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 let g:ctrlp_use_caching = 0
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 
 " easymotion config
 map <Leader>l <Plug>(easymotion-lineforward)
@@ -354,9 +324,11 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
 
+
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
-
+nnoremap <C-c> :call NERDComment(0,"toggle")<CR>
+vnoremap <C-c> :call NERDComment(0,"toggle")<CR>
 
 "if has("mac") || has("macunix")
 "    set guifont=Monaco\ for\ Powerline:h24
@@ -364,6 +336,6 @@ let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 "    set guifont=Monaco\ for\ Powerline:h14:cANSI
 "    set renderoptions=type:directx,renmode:5
 "endif
-set guifont=Monaco\ for\ Powerline\ for\ Powerline
-let g:Powerline_symbols = 'fancy'
+"set guifont=Monaco\ for\ Powerline\ for\ Powerline
+"let g:Powerline_symbols = 'fancy'
 

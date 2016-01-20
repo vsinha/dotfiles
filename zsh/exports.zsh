@@ -19,8 +19,8 @@ bin:script:node_modules/.bin\
 :$GOPATH/bin\
 :/Applications/Postgres.app/Contents/Versions/9.3/bin\
 :/usr/local/opt/go/libexec/bin:/usr/local/share/npm/bin:/usr/local/MacGPG2/bin:/usr/local/sbin:/usr/local/bin\
-:/usr/texbin:/usr/sbin:/usr/bin:/opt/X11/bin:/sbin:/bin\
-:$(brew --prefix coreutils)/libexec/gnubin"
+:/usr/texbin:/usr/sbin:/usr/bin:/opt/X11/bin:/sbin:/bin"
+#:$(brew --prefix coreutils)/libexec/gnubin"
 #####
 
 #export PATH=bin:script:node_modules/.bin
