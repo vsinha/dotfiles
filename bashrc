@@ -11,7 +11,7 @@ if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
-PS1='\[\e[0;34m\]\w $(vcprompt -f "[%b%m]") \[\e[0;32m\]\∴\[\e[m\] '
+PS1='\[\e[0;34m\]\w $(vcprompt -f "[%b%m]") \[\e[0;32m\]∴\[\e[m\] '
 #PS1='\[\e[0;34m\]\w \[\e[0;32m\]\$\[\e[m\] '
 
 if [ -d ~/z ]; then
