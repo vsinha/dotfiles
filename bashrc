@@ -3,15 +3,15 @@ if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
 
-#if [ -f `brew --prefix`/etc/bash_completion ]; then
-#      . `brew --prefix`/etc/bash_completion
-#fi
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+      . `brew --prefix`/etc/bash_completion
+fi
 
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
-PS1='\[\e[0;34m\]\w $(vcprompt -f "[%b%m]") \[\e[0;32m\]\$\[\e[m\] '
+PS1='\[\e[0;34m\]\w $(vcprompt -f "[%b%m]") \[\e[0;32m\]\∴\[\e[m\] '
 #PS1='\[\e[0;34m\]\w \[\e[0;32m\]\$\[\e[m\] '
 
 if [ -d ~/z ]; then
@@ -37,8 +37,6 @@ alias la='ls -Al'
 
 alias valgrind='valgrind --leak-check=yes'
 alias extract='dtrx'
-alias valhalla='ssh viraj@valhalla.vsinha.com'
-alias olympus='ssh viraj@olympus.vsinha.com'
 alias vimrc='vim ~/.vimrc'
 #alias winesteam='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-dwrite >/dev/null 2>&1 &'
 #alias sleep='systemctl suspend'
@@ -106,6 +104,3 @@ man() {
 }
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-export NVM_DIR="/Users/viraj/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
