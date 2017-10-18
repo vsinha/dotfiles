@@ -1,0 +1,1 @@
+/Users/viraj/.config/fisherman/await/functions/await.fish

@@ -1,0 +1,1 @@
+/Users/viraj/.config/fisherman/z/conf.d/z.fish
