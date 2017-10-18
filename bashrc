@@ -14,10 +14,10 @@ fi
 PS1='\[\e[0;34m\]\w $(vcprompt -f "[%b%m]") \[\e[0;32m\]∴\[\e[m\] '
 #PS1='\[\e[0;34m\]\w \[\e[0;32m\]\$\[\e[m\] '
 
-if [ -d ~/z ]; then
-    # else clone https://github.com/rupa/z to ~/
-  . ~/z/z.sh
-fi
+#if [ -d ~/z ]; then
+    ## else clone https://github.com/rupa/z to ~/
+  #. ~/z/z.sh
+#fi
 
 
 #precmd() {
@@ -104,3 +104,19 @@ man() {
 }
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+export NVM_DIR="/Users/viraj/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+eval $(thefuck --alias)
+
+[ -s "/Users/viraj/.dnx/dnvm/dnvm.sh" ] && . "/Users/viraj/.dnx/dnvm/dnvm.sh" # Load dnvm
+
+# added by travis gem
+[ -f /Users/viraj/.travis/travis.sh ] && source /Users/viraj/.travis/travis.sh
+
+# added by Anaconda3 4.4.0 installer
+export PATH="/Users/viraj/anaconda/bin:$PATH"
+
+# added by Miniconda3 4.3.21 installer
+export PATH="/Users/viraj/miniconda3/bin:$PATH"
+

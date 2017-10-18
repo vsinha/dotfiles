@@ -13,7 +13,7 @@ source $ZSH_BASE/bindkeys.zsh
 source $ZSH_BASE/functions.zsh
 source $ZSH_BASE/history.zsh
 source $ZSH_BASE/zsh_hooks.zsh
-source $BASE/z/z.sh
+source $BASE/z.sh
 source $BASE/k/k.sh
 
 

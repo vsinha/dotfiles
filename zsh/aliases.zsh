@@ -3,6 +3,10 @@ alias ls='ls -GFh'
 alias ll='ls -GFhl'
 alias la='ls -GFhlA'
 alias grep='grep --color=always'
+alias -g gp='| grep -i'
+
+# open with..
+alias -s html=chrome
 
 # grep folder recursively
 gf() {
@@ -32,7 +36,7 @@ alias valhalla='ssh viraj@valhalla.vsinha.com'
 
 # git
 eval "$(hub alias -s)" # hub helps you win at git
-alias gits='git status -uno'  # hides files not added to the repo
+alias gits='git status'  # hides files not added to the repo
 alias gitl='git log --graph --full-history --all --pretty=format:"%h%x09%d%x20%s"'
 alias gitb='git branch -l'
 
@@ -62,3 +66,13 @@ stream() {
 }
 
 alias quote='nc pchs.co 17'
+
+# msft
+alias dock='eval "$(docker-machine env default)"'
+alias traviswebhost='ssh looper@104.40.16.149'
+alias travisworker='ssh looper@104.40.22.5'
+alias jenkinsloop='ssh looper@40.78.110.229'
+
+
+alias dcos-dev='dcos config set core.dcos_url http://loop-dev:2000'
+alias dcos-prod='dcos config set core.dcos_url http://loop-prod:2000'

@@ -27,28 +27,31 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'altercation/vim-colors-solarized'
 "Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-sleuth' 
 "Plugin 'tomtom/tcomment_vim'
-Plugin 'vim-scripts/st.vim'
-Plugin 'Lokaltog/vim-easymotion'
+Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-sleuth'
+"Plugin 'tomtom/tcomment_vim'
+"Plugin 'vim-scripts/st.vim'
+"Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'terryma/vim-expand-region'
 "Plugin 'chase/vim-ansible-yaml'
 Plugin 'scrooloose/nerdcommenter'
 "Plugin 'jiangmiao/auto-pairs'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'ingydotnet/yaml-vim'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'ingydotnet/yaml-vim'
 "Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'bling/vim-bufferline'
 
 "Plugin 'vim-scripts/st.vim'
-Plugin 'jelera/vim-javascript-syntax'
+"Plugin 'jelera/vim-javascript-syntax'
+Plugin 'Raimondi/delimitMate'
+Plugin 'junegunn/fzf'
+
 " javascript / react
 Plugin 'pangloss/vim-javascript'
 
-Plugin 'ternjs/tern_for_vim'
-autocmd FileType javascript setlocal omnifunc=tern#Complete
+"Plugin 'ternjs/tern_for_vim'
+"autocmd FileType javascript setlocal omnifunc=tern#Complete
 
 Plugin 'mxw/vim-jsx'
 let g:jsx_ext_required = 0
@@ -58,15 +61,15 @@ autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 au BufReadPost *.ts set syntax=typescript
 
-Plugin 'digitaltoad/vim-jade'
-au BufReadPost *.jade set syntax=jade
+"Plugin 'digitaltoad/vim-jade'
+"au BufReadPost *.jade set syntax=jade
 
 Plugin 'mustache/vim-mustache-handlebars'
 au BufReadPost *.handlebars set syntax=mustache
 
 " haskell
-Plugin 'raichoo/haskell-vim'
-Plugin 'adinapoli/cumino'
+"Plugin 'raichoo/haskell-vim'
+"Plugin 'adinapoli/cumino'
 
 
 " OSX specific options
@@ -89,7 +92,7 @@ set shortmess+=I                      " disable the welcome screen
 set complete+=k                       " enable dictionary completion
 set wildmenu  			      " cmd line completion
 set wildmode=list:longest,full
-set wildignore=*.o,*~,*.pyc,*.pyo,*.so,*.sw*,__pycache__,*/tmp/*,*.swp,*.zip 
+set wildignore=*.o,*~,*.pyc,*.pyo,*.so,*.sw*,__pycache__,*/tmp/*,*.swp,*.zip
 set ttyfast
 set ruler                             " ruler display in status line
 set backspace=2                       " full backspacing capabilities
@@ -102,7 +105,7 @@ set ttimeoutlen=200
 set timeoutlen=100	  	      " esc delay
 "set cc=80                            " 80 char column indicator
 
-" undofile 
+" undofile
 " -------------------------------------
 if exists("+undofile")
   " Uses .vim-undo first, then ~/.vim/undo
@@ -118,7 +121,7 @@ endif
 
 " tabs and indenting
 " -------------------------------------
-" should be taken care of by vim-sleuth 
+" should be taken care of by vim-sleuth
 set expandtab                         " replace tabs with spaces
 "set noexpandtab
 set shiftwidth=4
@@ -149,7 +152,7 @@ set lbr                               " line break
 
 " no bells
 " -------------------------------------
-set noerrorbells visualbell t_vb = 
+set noerrorbells visualbell t_vb =
 autocmd GUIEnter * set visualbell t_vb=
 
 " Syntax for antlr files
@@ -224,13 +227,13 @@ inoremap jk <ESC>
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 
 " F8 to disable all autoindents (for pasting)
-nnoremap <F8> :setl noai nocin nosi inde=<CR> 
+nnoremap <F8> :setl noai nocin nosi inde=<CR>
 
 " keep macro window from popping up
 map q: :q
 
-vmap <C-x> :!pbcopy<CR>  
-vmap <C-c> :w !pbcopy<CR><CR> 
+vmap <C-x> :!pbcopy<CR>
+vmap <C-c> :w !pbcopy<CR><CR>
 
 set clipboard=unnamed
 
@@ -238,8 +241,8 @@ set clipboard=unnamed
 " auto commands
 " -------------------------------------
 " turn hash bangs into executeables automatically
-au BufWritePost * if getline(1) =~ "^#!" | silent :!chmod +x <afile>
-au BufWritePost .vimrc source %
+" au BufWritePost * if getline(1) =~ "^#!" | silent :!chmod +x <afile>
+" au BufWritePost .vimrc source %
 
 " save last position
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif "
@@ -248,11 +251,14 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " save on lose focus
-au FocusLost * :wa 
+au FocusLost * :wa
 set wildignore+=*.lib,*.dll,*.exe,*.o,*.obj,*.pyc,*.pyo,*.png,*.gif,*.jpg,*.jpeg,*.bmp,*.tiff " ignore filetypes for auto complete
 
 " highlight yacc files as if they were cpp files
 au BufRead,BufNewFile *.y set syntax=cpp
+
+" Jenknsfiles are actually groovy
+au BufRead,BufNewFile Jenknsfile set syntax=groovy
 
 " haskell specific settings
 autocmd FileType haskell set tabstop=8|set expandtab|set softtabstop=4|set shiftwidth=4|set shiftround
@@ -288,15 +294,15 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 " plugin settings
 " -------------------------------------
 " syntastic left side bar color
-hi SignColumn ctermbg=235
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"hi SignColumn ctermbg=235
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 " On by default, turn it off for html
-let g:syntastic_mode_map = { 'mode': 'active',
-    \ 'active_filetypes': [],
-    \ 'passive_filetypes': ['html'] }
+"let g:syntastic_mode_map = { 'mode': 'active',
+    "\ 'active_filetypes': [],
+    "\ 'passive_filetypes': ['html'] }
 
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
