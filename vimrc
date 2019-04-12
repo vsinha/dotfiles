@@ -80,7 +80,7 @@ set clipboard=unnamed 		      " yy p etc all use the mac clipboard
 " General Options
 " -------------------------------------
 set t_Co=256                          " enable 256 colors
-set mouse=a                           " make sure mouse is used in all cases.
+"set mouse=a                           " make sure mouse is used in all cases.
 set autoread                          " detect external changes
 set scrolloff=5                       " lines between cursor and edge
 set autoindent
@@ -175,7 +175,7 @@ syntax on
 syntax enable
 let g:solarized_termcolors=256
 set background=dark
-colorscheme solarized
+"colorscheme solarized
 "let g:solarized_contrast="high"
 "highlight MatchParen cterm=bold ctermfg=Grey ctermbg=DarkGrey
 
