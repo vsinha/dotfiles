@@ -20,56 +20,28 @@ endif
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Plugin 'Lokaltog/vim-powerline'
-Plugin 'vim-scripts/SearchComplete'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'kien/ctrlp.vim'
-Plugin 'myusuf3/numbers.vim'
-Plugin 'altercation/vim-colors-solarized'
-"Plugin 'octol/vim-cpp-enhanced-highlight'
-"Plugin 'tomtom/tcomment_vim'
-Plugin 'tpope/vim-fugitive'
-"Plugin 'tpope/vim-sleuth'
-"Plugin 'tomtom/tcomment_vim'
-"Plugin 'vim-scripts/st.vim'
 "Plugin 'Lokaltog/vim-easymotion'
-"Plugin 'terryma/vim-expand-region'
+"Plugin 'Raimondi/delimitMate'
+"Plugin 'bling/vim-bufferline'
 "Plugin 'chase/vim-ansible-yaml'
-Plugin 'scrooloose/nerdcommenter'
-"Plugin 'jiangmiao/auto-pairs'
-"Plugin 'Valloric/YouCompleteMe'
 "Plugin 'ingydotnet/yaml-vim'
-"Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'bling/vim-bufferline'
-
-"Plugin 'vim-scripts/st.vim'
-"Plugin 'jelera/vim-javascript-syntax'
-Plugin 'Raimondi/delimitMate'
-Plugin 'junegunn/fzf'
-
-" javascript / react
-Plugin 'pangloss/vim-javascript'
-
+"Plugin 'jiangmiao/auto-pairs'
+"Plugin 'kien/ctrlp.vim'
 "Plugin 'ternjs/tern_for_vim'
-"autocmd FileType javascript setlocal omnifunc=tern#Complete
-
-Plugin 'mxw/vim-jsx'
-let g:jsx_ext_required = 0
-
-Plugin 'leafgarland/typescript-vim'
-autocmd QuickFixCmdPost [^l]* nested cwindow
-autocmd QuickFixCmdPost    l* nested lwindow
-au BufReadPost *.ts set syntax=typescript
-
-"Plugin 'digitaltoad/vim-jade'
-"au BufReadPost *.jade set syntax=jade
-
-Plugin 'mustache/vim-mustache-handlebars'
-au BufReadPost *.handlebars set syntax=mustache
-
-" haskell
-"Plugin 'raichoo/haskell-vim'
-"Plugin 'adinapoli/cumino'
+"Plugin 'terryma/vim-expand-region'
+"Plugin 'tomtom/tcomment_vim'
+"Plugin 'tpope/vim-sleuth'
+"Plugin 'vim-scripts/st.vim'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'altercation/vim-colors-solarized'
+"Plugin 'davidhalter/jedi-vim'
+Plugin 'junegunn/fzf'
+Plugin 'myusuf3/numbers.vim'
+Plugin 'python/black'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-scripts/SearchComplete'
+Plugin 'fatih/vim-go'
 
 
 " OSX specific options
@@ -173,8 +145,8 @@ endif
 " -------------------------------------
 syntax on
 syntax enable
-let g:solarized_termcolors=256
-set background=dark
+"let g:solarized_termcolors=256
+"set background=dark
 "colorscheme solarized
 "let g:solarized_contrast="high"
 "highlight MatchParen cterm=bold ctermfg=Grey ctermbg=DarkGrey
@@ -189,7 +161,7 @@ set background=dark
 "vnoremap <tab> %
 
 " space is leader (all hail space)
-let mapleader = "\<Space>"
+let mapleader = ","
 let maplocalleader = "\\"
 
 " save quicker
@@ -236,6 +208,8 @@ vmap <C-x> :!pbcopy<CR>
 vmap <C-c> :w !pbcopy<CR><CR>
 
 set clipboard=unnamed
+
+map <leader>f :FZF<CR>
 
 
 " auto commands
@@ -344,4 +318,89 @@ vnoremap <C-c> :call NERDComment(0,"toggle")<CR>
 "endif
 "set guifont=Monaco\ for\ Powerline\ for\ Powerline
 "let g:Powerline_symbols = 'fancy'
+
+" ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
+let s:opam_share_dir = system("opam config var share")
+let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
+
+let s:opam_configuration = {}
+
+function! OpamConfOcpIndent()
+  execute "set rtp^=" . s:opam_share_dir . "/ocp-indent/vim"
+endfunction
+let s:opam_configuration['ocp-indent'] = function('OpamConfOcpIndent')
+
+function! OpamConfOcpIndex()
+  execute "set rtp+=" . s:opam_share_dir . "/ocp-index/vim"
+endfunction
+let s:opam_configuration['ocp-index'] = function('OpamConfOcpIndex')
+
+function! OpamConfMerlin()
+  let l:dir = s:opam_share_dir . "/merlin/vim"
+  execute "set rtp+=" . l:dir
+endfunction
+let s:opam_configuration['merlin'] = function('OpamConfMerlin')
+
+let s:opam_packages = ["ocp-indent", "ocp-index", "merlin"]
+let s:opam_check_cmdline = ["opam list --installed --short --safe --color=never"] + s:opam_packages
+let s:opam_available_tools = split(system(join(s:opam_check_cmdline)))
+for tool in s:opam_packages
+  " Respect package order (merlin should be after ocp-index)
+  if count(s:opam_available_tools, tool) > 0
+    call s:opam_configuration[tool]()
+  endif
+endfor
+" ## end of OPAM user-setup addition for vim / base ## keep this line
+" ## added by OPAM user-setup for vim / ocp-indent ## cbe9aac2ae165d4d774e61b16d2665ac ## you can edit, but keep this line
+if count(s:opam_available_tools,"ocp-indent") == 0
+  source "/Users/viraj/.opam/default/share/ocp-indent/vim/indent/ocaml.vim"
+endif
+" ## end of OPAM user-setup addition for vim / ocp-indent ## keep this line
+
+autocmd BufWritePre *.py execute ':Black'
+
+set rtp+=/opt/homebrew/opt/fzf
+
+"""""""""""""""""""""""""""""""
+" Go stuff
+"""""""""""""""""""""""""""""""
+
+set autowrite
+
+" LSP
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+
+" Go syntax highlighting
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+
+" Auto formatting and importing
+let g:go_fmt_autosave = 1
+let g:go_fmt_command = "goimports"
+
+" Status line types/signatures
+let g:go_auto_type_info = 1
+
+" Run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+" Map keys for most used commands.
+" Ex: `\b` for building, `\r` for running and `\b` for running test.
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
+
+" Autocomplete
+au filetype go inoremap <buffer> . .<C-x><C-o>
 
