@@ -1,0 +1,5 @@
+alias gs='git status'
+alias ga='git add .'
+alias gp='git push'
+alias gcm='git commit -m'
+alias gcmz='git commit -m z'

@@ -5,9 +5,9 @@ set modelines=0 "security hole involving modelines
 filetype plugin indent on "required for vundle
 syntax enable
 
-" General Options
-" -------------------------------------
-" automatically set up vundle and install all bundles if vundle is not installed
+"General Options
+"-------------------------------------
+"automatically set up vundle and install all bundles if vundle is not installed
 let iCanHazVundle=1
 let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
 if !filereadable(vundle_readme)
@@ -20,6 +20,7 @@ endif
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+Plugin 'tpope/vim-commentary'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'vim-scripts/SearchComplete'
 Plugin 'octol/vim-cpp-enhanced-highlight'
@@ -30,12 +31,11 @@ Plugin 'altercation/vim-colors-solarized'
 "Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-fugitive'
 "Plugin 'tpope/vim-sleuth'
-"Plugin 'tomtom/tcomment_vim'
 "Plugin 'vim-scripts/st.vim'
 "Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'terryma/vim-expand-region'
 "Plugin 'chase/vim-ansible-yaml'
-Plugin 'scrooloose/nerdcommenter'
+"Plugin 'scrooloose/nerdcommenter'
 "Plugin 'jiangmiao/auto-pairs'
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'ingydotnet/yaml-vim'
@@ -173,9 +173,9 @@ endif
 " -------------------------------------
 syntax on
 syntax enable
-let g:solarized_termcolors=256
-set background=dark
-colorscheme solarized
+"let g:solarized_termcolors=256
+"set background=dark
+colorscheme delek
 "let g:solarized_contrast="high"
 "highlight MatchParen cterm=bold ctermfg=Grey ctermbg=DarkGrey
 
