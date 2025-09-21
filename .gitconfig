@@ -24,10 +24,6 @@
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
-[credential]
-	helper = osxkeychain
-	helper = !/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/bin/java -Ddebug=false -jar /usr/local/Cellar/git-credential-manager/1.3.0/libexec/git-credential-manager-1.3.0.jar
-	helper = osxkeychain
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RF
 [interactive]

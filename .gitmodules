@@ -1,6 +1,0 @@
-[submodule "doom.d/doom.d/modules/private/spacemacs"]
-	path = doom.d/doom.d/modules/private/spacemacs
-	url = https://github.com/vsinha/spacemacs_module_for_doom
-[submodule "doom.d/modules/private/spacemacs"]
-	path = doom.d/modules/private/spacemacs
-	url = https://github.com/vsinha/spacemacs_module_for_doom

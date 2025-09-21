@@ -1,1 +1,0 @@
-/Users/viraj/.config/fisherman/get/functions/get.fish
