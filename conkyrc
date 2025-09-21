@@ -14,8 +14,8 @@ template0 │
 
 TEXT
 $template0 \
-↑ ${upspeed ens33} \
-↓ ${downspeed ens33} \
+↑ ${upspeed enp0s31f6} \
+↓ ${downspeed enp0s31f6} \
 $template0 \
 CPU: ${loadavg 1}% \
 $template0 \
@@ -23,9 +23,8 @@ RAM: ${memperc}% \
 $template0 \
 /: ${fs_used_perc /}% \
 $template0 \
-${battery_short BAT2} ${battery_time BAT2} \
+/home: ${fs_used_perc /home}% \
 $template0 \
 ${time %a %m/%d} \
 $template0 \
 ${time %I:%M %P} \
-
